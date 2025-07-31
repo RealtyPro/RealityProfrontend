@@ -9,62 +9,84 @@ import { useQueryClient } from "@tanstack/react-query"
 import { MlsPropertyCard } from "@/component/mlsSearchMenu/MlsPropertyCard"
 import RegistrationModal from "../auth/RegistrationModal"
 import LoginModal from "../auth/LoginModal"
+import GoogleMapComponent from "@/component/mlsSearchMenu/MlsMap"
 type Property = {
-    id: string ;
+    id: string;
     // add other fields as needed, e.g. title: string;
     [key: string]: string;
 };
 
- const MlsSerchHomePage = () => {
+const MlsSerchHomePage = () => {
     const queryClient = useQueryClient();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-    const [searchFilters, setSearchFilters] = useState({
-        keyword: '',
-        pageLimit: 20,
-        page: 1,
-        property_status: '',
-        property_type: '',
-        property_for: '',
-        category_type: '',
-        price_min: 0,
-        price_max: 0,
-        bed_min: 0,
-        bed_max: 0,
-        bath_min: 0,
-        bath_max: 0,
-        garage_min: 0,
-        garage_max: 0,
-        square_footage_min: 0,
-        square_footage_max: 0,
-        community_amenities: '',
-        property_view: '',
-        lot_size_min: 0,
-        lot_size_max: 0,
-        year_built_min: 0,
-        year_built_max: 0,
-        max_annual_tax: 0,
-        stories: 0,
-        premium: false,
-        exclusive: false,
-        price_on_request: false,
-        construction_status: '',
-        furnishing: '',
-        available_from: '',
-        rented: false,
-        mls_city: '',
-        mls_state: '',
-        zip: '',
-        mls_basement: '',
-        mls_sewer: '',
-        mls_school_district: '',
-        mls_builder_name: '',
-        mls_list_agent: '',
-        mls_site_features: '',
-        mls_lot_feature: '',
-        interior_features: ''
+    const [searchFilters, setSearchFilters] = useState(() => {
+        // read once during initial render (browser-side only)
+        const type = typeof window !== "undefined" ? sessionStorage.getItem("prop_type") ?? "" : "";
+        const loc = typeof window !== "undefined" ? sessionStorage.getItem("prop_location") ?? "" : "";
+        const maxPrice = typeof window !== "undefined" ? sessionStorage.getItem("prop_max_price") ?? "" : "";
 
+        return {
+            keyword: '',
+            pageLimit: 20,
+            page: 1,
+            property_status: '',
+            property_type: type,
+            property_for: '',
+            category_type: '',
+            price_min: 0,
+            price_max: maxPrice ? Number(maxPrice) : 0,
+            bed_min: 0,
+            bed_max: 0,
+            bath_min: 0,
+            bath_max: 0,
+            garage_min: 0,
+            garage_max: 0,
+            square_footage_min: 0,
+            square_footage_max: 0,
+            community_amenities: '',
+            property_view: '',
+            lot_size_min: 0,
+            lot_size_max: 0,
+            year_built_min: 0,
+            year_built_max: 0,
+            max_annual_tax: 0,
+            stories: 0,
+            premium: false,
+            exclusive: false,
+            price_on_request: false,
+            construction_status: '',
+            furnishing: '',
+            available_from: '',
+            rented: false,
+            mls_city: loc,
+            mls_state: '',
+            zip: '',
+            mls_basement: '',
+            mls_sewer: '',
+            mls_school_district: '',
+            mls_builder_name: '',
+            mls_list_agent: '',
+            mls_site_features: '',
+            mls_lot_feature: '',
+            interior_features: ''
+        };
     });
+
+    /* -----------------------------------------------------------
+       Remove the temporary session-stored filters when the user
+       navigates away from this page or reloads the tab.
+    ------------------------------------------------------------*/
+    useEffect(() => {
+        const clearTempFilters = () => {
+            sessionStorage.removeItem("prop_type");
+            sessionStorage.removeItem("prop_location");
+            sessionStorage.removeItem("prop_max_price");
+        };
+
+        // clear on unmount (navigation inside the SPA)
+        return () => clearTempFilters();
+    }, []);
     const [properties, setProperties] = useState<Property[]>([]);
     const { data: propertyListDatas, isLoading, isError, } = useMlsPropertyList(searchFilters);
     const [openMapPropertyGrid, setOpenMapPropertyGrid] = useState(false);
@@ -82,7 +104,7 @@ type Property = {
         queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
 
 
-    }, [searchFilters,queryClient]);
+    }, [searchFilters, queryClient]);
     const handleOpenMapPropertyGrid = (open: boolean) => {
         setOpenMapPropertyGrid(open);
         setOpenMapGrid(false);
@@ -101,6 +123,15 @@ type Property = {
     const handleSearch = (value: string, key: keyof typeof searchFilters) => {
         // Update the search filters state with the new value for the specified k
         // console.log("Search Filters:", key, value);
+        if (key == "price_max") {
+            sessionStorage.setItem('prop_max_price', value);
+        }
+        if (key == "property_type") {
+            sessionStorage.setItem("prop_type", value);
+        }
+        if (key == "mls_city") {
+            sessionStorage.setItem("prop_location", value);
+        }
         setSearchFilters(prevFilters => ({
             ...prevFilters,
             [key]: value
@@ -161,7 +192,7 @@ type Property = {
             </div>
             <div >
                 {openMapPropertyGrid ?
-                    <MlsPropertyMapPage 
+                    <MlsPropertyMapPage
                         properties={properties || []}
                         handleModal={handleModal}
                     /> : <></>
@@ -190,7 +221,18 @@ type Property = {
                     : <></>
                 }
                 {openMapGrid ?
-                    <MlsMapPage /> : <></>}
+                    properties.length ? (
+                        <section className="prop-container">
+                            <div className="container">
+                                <GoogleMapComponent markers={properties.map((p: any) => ({
+                                    lat: Number(p.latitude),
+                                    lng: Number(p.longitude),
+                                }))} />
+                            </div>
+                        </section>)
+                        : (
+                            <div>No properties found.</div>
+                        ) : <></>}
             </div>
         </>
     )

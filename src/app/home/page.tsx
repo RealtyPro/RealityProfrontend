@@ -1,11 +1,12 @@
 import * as React from "react";
 import '../../styles/globalStyles.css';
-import  NewsArticleList  from "@/main-pages/home/NewsArticleList";
-import  TestimonialList  from "@/main-pages/home/TestmonialList";
+import NewsArticleList from "@/main-pages/home/NewsArticleList";
+import TestimonialList from "@/main-pages/home/TestmonialList";
 import { Footer } from "@/component/sharable/Footer";
 import { Header } from "@/component/sharable/Header";
-import PropertyHomeList  from "@/main-pages/home/PropertyHomeList";
-import NeighborhoodHomeList  from "@/main-pages/home/NeighborhoodHomeList";
+import PropertyHomeList from "@/main-pages/home/PropertyHomeList";
+import NeighborhoodHomeList from "@/main-pages/home/NeighborhoodHomeList";
+import SearchContainer from "@/main-pages/home/SearchContainer";
 export default function HomePage() {
 
     return (
@@ -25,44 +26,7 @@ export default function HomePage() {
                         </div>
 
                         <div className="search-form">
-                            <div className="search-container">
-
-                                <div className="search-fields">
-                                    <div className="search-field">
-                                        <label className="search-label">Location</label>
-                                        <div className="select-field">
-                                            <span className="search-span">Abu Dhabi</span>
-                                            <svg width="24" height="24" viewBox="0 0 24 24">
-                                                <path d="M5 9L12 16L19 9" stroke="currentColor" strokeWidth="2" fill="none" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className="search-field">
-                                        <label className="search-label">Property Type</label>
-                                        <div className="select-field">
-                                            <span className="search-span">Residential</span>
-                                            <svg width="24" height="24" viewBox="0 0 24 24">
-                                                <path d="M5 9L12 16L19 9" stroke="currentColor" strokeWidth="2" fill="none" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className="search-field search-width">
-                                        <label className="search-label">Max Price</label>
-                                        <div className="select-field">
-                                            <span className="search-span">$3,50000 USD</span>
-                                            <svg width="24" height="24" viewBox="0 0 24 24">
-                                                <path d="M5 9L12 16L19 9" stroke="currentColor" strokeWidth="2" fill="none" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className="search-field">
-                                        <div className="select-field">
-                                            <button className="search-tab active">Find Property</button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <SearchContainer />
                         </div>
                     </div>
                 </div>

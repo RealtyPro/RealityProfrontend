@@ -40,7 +40,7 @@ const NewsArticleList = () => {
                         ))}
                     </>
                 ) : (
-                    <div>No blogs found.</div>
+                    <div>No News articles found.</div>
                 )}
             </div>
             <div className="section-cta">

@@ -9,17 +9,19 @@ const containerStyle = {
   borderRadius: '30px',
 };
 
-const center = {
-  lat: 28.6139,
-  lng: 77.2090,
-};
+type LatLng = { lat: number; lng: number };
+interface MapProps {
+  markers?: LatLng[];           // list of positions to plot
+}
 
-const GoogleMapComponent = () => {
+const GoogleMapComponent = ({ markers = [] }: MapProps) => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyBebKRxO32tCMD-9kzex13fYGyWdjSvCdU", 
+    googleMapsApiKey: 'AIzaSyBebKRxO32tCMD-9kzex13fYGyWdjSvCdU',
   });
 
-  const [position, setPosition] = useState(center);
+  // centre map on the first marker or a default location
+  const defaultCenter: LatLng = markers[0] ?? { lat: 28.6139, lng: 77.209 };
+  const [position] = useState(defaultCenter);
 
   if (!isLoaded) return <p>Loading map...</p>;
 
@@ -29,7 +31,9 @@ const GoogleMapComponent = () => {
       center={position}
       zoom={12}
     >
-      <Marker position={position} />
+      {markers.length
+        ? markers.map((m, idx) => <Marker key={idx} position={m} />)
+        : <Marker position={position} />}
     </GoogleMap>
   );
 };

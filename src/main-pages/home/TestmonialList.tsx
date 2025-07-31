@@ -36,7 +36,7 @@ const TestimonialList = () => {
                         ))}
                     </>
                 ) : (
-                    <div>No blogs found.</div>
+                    <div>No Testimonials found.</div>
                 )}
 
             </div >

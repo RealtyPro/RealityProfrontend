@@ -44,7 +44,7 @@ export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
         <div className="property-card">
             <div className="property-image">
                 <Image
-                    src="/images/property-1.png"
+                    src={item.cover_photo[0]}
                     alt="Property"
                     width={400}
                     height={250}
