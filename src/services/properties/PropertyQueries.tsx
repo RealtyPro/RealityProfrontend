@@ -1,6 +1,6 @@
 "use client"
 import { useQuery } from "@tanstack/react-query";
-import { fetchMlsSearchPropertyList, fetchPropertyList } from "./PropertyServices";
+import { fetchMlsSearchPropertyList, fetchPropertyList, fetchMlsPropertyById } from "./PropertyServices";
 
 export const usePropertyList = (data: { pageLimit?: number; search?: string }) => {
     return useQuery({ queryKey: ['propertylist', ], queryFn: () => 
@@ -11,5 +11,13 @@ export const useMlsPropertyList = (params: Parameters<typeof fetchMlsSearchPrope
     queryKey: ['mlsPropertyList', params],
     queryFn: () => fetchMlsSearchPropertyList(params),
     // keepPreviousData: true,
+  });
+};
+
+export const usePropertyById = (id: string | undefined) => {
+  return useQuery({
+    queryKey: ["property", id],
+    queryFn: () => fetchMlsPropertyById(id as string),
+    enabled: !!id,
   });
 };

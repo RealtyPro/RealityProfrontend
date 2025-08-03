@@ -75,31 +75,30 @@ export const Footer = () => {
 
                     <div className="footer-links">
                         <div className="footer-column">
-                            <h4>About Us</h4>
+                            <h4>Links</h4>
                             <ul>
-                                <li><a href="#">Our Mission</a></li>
-                                <li><a href="#">Our Story</a></li>
-                                <li><a href="#">Team Members</a></li>
-                                <li><a href="#">Tutorials</a></li>
-                                <li><a href="#">How it works</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us </a></li>
+                                
                             </ul>
                         </div>
 
                         <div className="footer-column">
                             <h4>Learn</h4>
                             <ul>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Tech stories</a></li>
-                                <li><a href="#">F.A.Q</a></li>
+                                <li><a href="#">Blogs</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#">Articles</a></li>
                             </ul>
                         </div>
 
                         <div className="footer-column">
-                            <h4>Hire</h4>
+                            <h4>Listing</h4>
                             <ul>
-                                <li><a href="#">Career</a></li>
-                                <li><a href="#">Freelancers</a></li>
-                                <li><a href="#">Trainee</a></li>
+                                <li><a href="#">Properties</a></li>
+                                <li><a href="#">Neibourhoods</a></li>
+                                <li><a href="#">Blogs</a></li>
                             </ul>
                         </div>
                     </div>

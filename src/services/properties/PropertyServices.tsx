@@ -29,6 +29,12 @@ export const fetchMlsSearchPropertyList = async (
     const response = await axiosInstance.get(`/v1/properties/search?search[keyword]=${keyword}&search[property_status]=${property_status}&search[property_type]=${data?.property_type || ''}&search[property_for]=${data?.property_for || ''}&search[category_type]=${data?.category_type || ''}&search[price_min]=${data?.price_min || ''}&search[price_max]=${data?.price_max || ''}&search[bed_min]=${data?.bed_min || ''}&search[bed_max]=${data?.bed_max || ''}&search[bath_min]=${data?.bath_min || ''}&search[bath_max]=${data?.bath_max || ''}&search[garage_min]=${data?.garage_min || ''}&search[garage_max]=${data?.garage_max || ''}&search[square_footage_min]=${data?.square_footage_min || ''}&search[square_footage_max]=${data?.square_footage_max || ''}&search[lot_size_min]=${data?.lot_size_min || ''}&search[lot_size_max]=${data?.lot_size_max || ''}&search[year_built_min]=${data?.year_built_min || ''}&search[year_built_max]=${data?.year_built_max || ''}&search[max_annual_tax]=${data?.max_annual_tax || ''}&search[stories]=${data?.stories || ''}&search[premium]=${data?.premium || ''}&search[exclusive]=${data?.exclusive || ''}&search[price_on_request]=${data?.price_on_request || ''}&search[construction_status]=${data?.construction_status || ''}&search[furnishing]=${data?.furnishing || ''}&search[available_from]=${data?.available_from || ''}&search[rented]=${data?.rented || ''}&search[mls_city]=${data?.mls_city || ''}&search[mls_state]=${data?.mls_state || ''}&search[zip]=${data?.zip || ''}&search[mls_basement]=${data?.mls_basement || ''}&search[mls_sewer]=${data?.mls_sewer || ''}&search[mls_school_district]=${data?.mls_school_district || ''}&search[mls_builder_name]=${data?.mls_builder_name || ''}&search[mls_list_agent]=${data?.mls_list_agent || ''}&search[mls_site_features]=${data?.mls_site_features || ''}&search[mls_lot_feature]=${data?.mls_lot_feature || ''}&sort_by=featured&pageLimit=${data?.pageLimit || 25}&page=${data?.page || 1}&community_amenities=${data?.community_amenities || ''}&property_view=${data?.property_view || ''}&interior_features=${data?.interior_features || ''}`);
     return response.data;
 }
+// Add single property fetcher
+export const fetchMlsPropertyById = async (id: string) => {
+    if (!id) throw new Error("Missing property id");
+    const response = await axiosInstance.get(`/v1/property/listingkey/${id}`);
+    return response.data;
+};
 // type PropertySearchParams = {
 //     pageLimit?: number;
 //     page?: number;

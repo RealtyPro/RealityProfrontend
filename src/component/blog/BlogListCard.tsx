@@ -11,8 +11,9 @@ export const BlogListCard = ({ item }: BlogListCardProps) => {
         }
 
     return (
-        <div className="news-blog-card news-blog-card-img1" 
-        // style={{backgroundImage:"url(``)"}}
+        <div
+            className="news-blog-card"
+            style={{ backgroundImage: item.image ? `url(${item.image})` : ` url('../../public/images/image3.png')` }}
         >
             <div className="news-blog-info">
                 <p className="news-blog-date">{dateToString(item?.publishDate)}</p>

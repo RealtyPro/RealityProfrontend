@@ -33,7 +33,7 @@ const PropertyHomeList = () => {
             <div className="properties-grid">
                 {properties.length ? (
                     <>
-                        {properties.slice(0, 4).map((item) => (
+                        {properties.slice(0, 8).map((item) => (
 
                             <PropertyCard key={item.id} item={item} handleModal={()=>console.log("property card")}/>
                         ))}

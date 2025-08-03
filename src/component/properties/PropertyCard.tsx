@@ -1,15 +1,17 @@
 "use client"
-import { postUserPropertyWishlist } from "@/services/profile/ProfileServices";
-import { useMutation } from "@tanstack/react-query";
+import { postUserPropertyWishlist, removeWishlistItem } from "@/services/profile/ProfileServices";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
-
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoMdHeart } from "react-icons/io";
 interface PropertyCardProps {
     item: any; // Replace 'any' with a more specific type if available
-    handleModal:()=>void
+    handleModal: () => void
 }
 
-export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
+export const PropertyCard = ({ item, handleModal }: PropertyCardProps) => {
+    const queryClient = useQueryClient();
 
     const postWishlistMutation = useMutation({
         mutationFn: (property: any) => postUserPropertyWishlist(property),
@@ -23,20 +25,26 @@ export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
             console.error("Error  while creating new blog:", error);
         },
     });
-    const handleAddWishlist = (id: string) => {
+    const removeWishlistMutation = useMutation({
+        mutationFn: (id: string) => removeWishlistItem(id),
+
+        onSuccess: (data) => {
+            alert("item removed from successfully");
+            queryClient.invalidateQueries({ queryKey: ['userWishlistInfo'] });
+        },
+        onError: (error) => {
+            console.error("Error  while deletion:", error);
+        },
+    });
+    const removeFromWishlist = (id: string) => {
         const token = sessionStorage.getItem("access_token");
         console.log(token)
         if (token == null) {
             handleModal();
         }
         else {
-            let data = {
-                listing_id: 3,
-                listing_key: id,
-                agent_id: 12,
-                user_id: 7
-            }
-            postWishlistMutation.mutate(data);
+          
+            removeWishlistMutation.mutate(id);
         }
     }
 
@@ -49,7 +57,7 @@ export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
                     width={400}
                     height={250}
                 />
-                <div className="property-badges">
+                {/* <div className="property-badges">
                     <span className="prop-badge">For Rent</span>
                     <button className="favorite-btn"
                         onClick={() => handleAddWishlist(item.id)}>
@@ -61,11 +69,19 @@ export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
                                 strokeLinejoin="round" />
                         </svg>
                     </button>
-                </div>
+                </div> */}
             </div>
             <div className="property-info">
-                <h3>{item.title}</h3>
-                <div className="property-features">
+                {/* <h3>{item.title}</h3> */}
+                <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
+                <div className="flex justify-end-safe items-center-safe gap-2 mls-span">
+                    <span>{item.beds} Bed</span>
+                    <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                    <span>{item.baths} Bath</span>
+                    <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                    <span>{item.square_footage} Sq Ft</span>
+                </div>
+                {/* <div className="property-features">
                     <span className="feature">
                         <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
                             fill="none">
@@ -92,9 +108,9 @@ export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
                         </svg>
                         {item.baths} Bathrooms
                     </span>
-                </div>
+                </div> */}
                 <div className="property-location">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
                         fill="none">
                         <path
                             d="M28.0215 31.4024C32.045 31.4024 35.3067 28.1407 35.3067 24.1172C35.3067 20.0937 32.045 16.832 28.0215 16.832C23.998 16.832 20.7363 20.0937 20.7363 24.1172C20.7363 28.1407 23.998 31.4024 28.0215 31.4024Z"
@@ -102,12 +118,18 @@ export const PropertyCard = ({ item,handleModal }: PropertyCardProps) => {
                         <path
                             d="M8.45355 19.869C13.0535 -0.352101 43.0116 -0.32875 47.5882 19.8923C50.2734 31.7541 42.8948 41.7947 36.4269 48.0058C31.7335 52.5357 24.3082 52.5357 19.5915 48.0058C13.1469 41.7947 5.7683 31.7308 8.45355 19.869Z"
                             stroke="#EDB75E" strokeWidth="3.5" />
-                    </svg>
+                    </svg> */}
                     <span>{item.address}</span>
                 </div>
-                <p className="property-price">$ {item.price}</p>
+
+            </div>
+            <div className="flex items-center justify-between mb5 w-full padding2">
+                <span className="listed-bold-span">Listed With</span>
+                <button onClick={() => removeFromWishlist(item.id)}>
+                    < IoMdHeart size={24} color="#EDB75E" />
+                </button>
             </div>
         </div>
-    
+
     )
 }

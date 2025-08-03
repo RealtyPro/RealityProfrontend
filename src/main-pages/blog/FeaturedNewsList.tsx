@@ -35,7 +35,7 @@ const FeaturedNewsList = () => {
                   ))}
                 </>
             ) : (
-                <div>No blogs found.</div>
+                <div>No news found.</div>
             )}
         </>
     )

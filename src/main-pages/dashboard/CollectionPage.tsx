@@ -6,10 +6,12 @@ import { FaHome, FaPlus } from "react-icons/fa";
 const ColloctionPage = () => {
     const router = useRouter();
     const [itemCount, setItemCount] = useState(0);
+    const [coverImage, setCoverImage] = useState("");
     const { data: wishListDatas, isLoading, error } = useUserWishlist();
     useEffect(() => {
         console.log("wishListDatas?.data?.count",wishListDatas?.count)
         setItemCount(wishListDatas?.count || 0);
+        setCoverImage(wishListDatas?.data?.[0]?.cover_photo || "");
 
     }, [wishListDatas, isLoading, error])
 
