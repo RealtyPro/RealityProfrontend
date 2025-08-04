@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { useBlogList } from "@/services/blog/BlogQueries";
+import { useBlogList, useNewsList } from "@/services/blog/BlogQueries";
 import { Blog } from "@/types/Blog";
 import { NewsArticleCard } from "@/component/home/NewsArticleCard";
 import Providers from "@/provider/QueryClientProvider";
@@ -11,7 +11,7 @@ const NewsArticleList = () => {
     // const [totalPages, setTotalPages] = useState(1);
     // const [total, setTotal] = useState(0);
     // const [perPage, setPerPage] = useState(10);
-    const { data: blogListDatas, isLoading, error } = useBlogList();
+    const { data: blogListDatas, isLoading, error } = useNewsList();
 
     useEffect(() => {
         if (blogListDatas && !isLoading && !error) {

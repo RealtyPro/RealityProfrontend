@@ -67,45 +67,46 @@ const FavouritesPage = () => {
 
     useEffect(() => {
         console.log("wishListDatas?.data?.count", wishListDatas?.count)
-        setFavPropertyList(wishListDatas?.data || []);
+        setMergedFavorites(wishListDatas?.data || []);
         setItemCount(wishListDatas?.count || 0);
+        
 
     }, [wishListDatas])
-    useEffect(() => {
-        if (propertyListDatas?.data && favPropertyList.length > 0) {
-            // Create a map of propertyListDatas by mls_listingkey for quick lookup
-            const propertyMap = new Map();
-            propertyListDatas.data.forEach((property: any) => {
-                if (property.mls_listingkey) {
-                    propertyMap.set(property.mls_listingkey, property);
-                }
-            });
+    // useEffect(() => {
+    //     if (propertyListDatas?.data && favPropertyList.length > 0) {
+    //         // Create a map of propertyListDatas by mls_listingkey for quick lookup
+    //         const propertyMap = new Map();
+    //         propertyListDatas.data.forEach((property: any) => {
+    //             if (property.mls_listingkey) {
+    //                 propertyMap.set(property.mls_listingkey, property);
+    //             }
+    //         });
 
-            // Create merged array with items that exist in both arrays
-            const merged = favPropertyList
-                .map((fav: any) => {
-                    const matchingProperty = propertyMap.get(fav.listing_key);
-                    if (matchingProperty) {
-                        // Merge favorite data with property data
-                        return {
-                            ...matchingProperty,
-                            ...fav,
-                            isFavorite: true
-                        };
-                    }
-                    return null;
-                })
-                .filter(Boolean); // Remove null values
-            console.log('favorites:', favPropertyList);
+    //         // Create merged array with items that exist in both arrays
+    //         const merged = favPropertyList
+    //             .map((fav: any) => {
+    //                 const matchingProperty = propertyMap.get(fav.listing_key);
+    //                 if (matchingProperty) {
+    //                     // Merge favorite data with property data
+    //                     return {
+    //                         ...matchingProperty,
+    //                         ...fav,
+    //                         isFavorite: true
+    //                     };
+    //                 }
+    //                 return null;
+    //             })
+    //             .filter(Boolean); // Remove null values
+    //         console.log('favorites:', favPropertyList);
 
-            console.log('Merged favorites:', merged);
-            console.log('Merged count:', merged.length);
+    //         console.log('Merged favorites:', merged);
+    //         console.log('Merged count:', merged.length);
 
-            setMergedFavorites(merged);
-            setItemCount(merged.length);
-        }
+    //         setMergedFavorites(merged);
+    //         setItemCount(merged.length);
+    //     }
 
-    }, [propertyListDatas, favPropertyList])
+    // }, [ favPropertyList])
     return (
         <main className="flex-1 p-10 bg-[#171717] min-h-screen main-content-p ">
             {/* Top Bar #171717         // main-content-pt*/}

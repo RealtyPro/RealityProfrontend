@@ -80,12 +80,13 @@ export const Header = ({ activeHeader }: headerProps) => {
                                     className={activeHeader == "home" ? "nav-link active" : "nav-link"}>Home</a></li>
                             {/* <li><a href="propertiesold" className={activeHeader ==
                                  "properties" ? "nav-link active" : "nav-link"}>Properties</a></li> */}
-                            <li
-                            // onClick={() => router.push('/home')}
-                            >
+                            <li onClick={() => router.push('/about-us')}>
                                 <a href="#"
                                     onClick={(e) => e.preventDefault()}
-                                    className={activeHeader == "about-us" ? "nav-link active" : "nav-link"}>About Us</a></li>
+                                    className={activeHeader == "about-us" ? "nav-link active" : "nav-link"}>
+                                    About Us
+                                </a>
+                            </li>
                             <li onClick={() => router.push('/properties')}>
                                 <a href="#"
                                     className={activeHeader == "mls-search" ? "nav-link active" : "nav-link"}
@@ -102,7 +103,9 @@ export const Header = ({ activeHeader }: headerProps) => {
                                 <a href="#"
                                     onClick={(e) => e.preventDefault()}
                                     className={activeHeader == "blog" ? "nav-link active" : "nav-link"}>Blog</a></li>
-                            <li><a href="#" className="nav-link">Contact us</a></li>
+                            <li onClick={() => router.push('/contact-us')}><a href="#"
+                             onClick={(e) => e.preventDefault()}
+                                className={activeHeader == "contact-us" ? "nav-link active" : "nav-link"}>Contact us</a></li>
                             <li onClick={handleDashboard}>
                                 <a href="#" className="nav-link">
                                     <Image

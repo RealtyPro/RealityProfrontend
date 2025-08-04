@@ -47,21 +47,15 @@ export const ImageGalleryModal = ({
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/75"
-      onClick={(e) => {
-        // Close only if the user clicked directly on the backdrop, not on any child
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
+      onClick={onClose}
     >
       <div
         className="relative w-full max-w-5xl px-4"
-        // Allow events inside the modal content without bubbling to the backdrop
-        onClick={(e) => e.stopPropagation()}
+        // onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
-          className="absolute right-4 top-4 z-[60] text-3xl font-bold text-white hover:text-gray-300"
+          className="absolute right-4 top-4 text-3xl font-bold text-white hover:text-gray-300"
           onClick={onClose}
           aria-label="Close modal"
         >

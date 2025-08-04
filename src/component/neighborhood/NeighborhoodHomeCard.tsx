@@ -5,9 +5,13 @@ interface NeighborhoodHomeCardProps {
 }
 
 export const NeighborhoodHomeCard = ({ item }: NeighborhoodHomeCardProps) => {
-    console.log("item", item);
+    const handleClick = (name: string) => {
+        sessionStorage.setItem("prop_location", name);
+        window.location.href = '/properties'
+    }
     return (
-        <div className="neighborhood-card">
+        <div className="neighborhood-card"
+            onClick={() => handleClick(item.name)}>
             <Image
                 src="/images/neighborhood-1.png"
                 alt="Orange"
@@ -15,8 +19,8 @@ export const NeighborhoodHomeCard = ({ item }: NeighborhoodHomeCardProps) => {
                 height={200}
             />
             <div className="neighborhood-info">
-                <h3>{item.title}</h3>
-                <p>Orange</p>
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
             </div>
         </div>
     )

@@ -9,9 +9,9 @@ const ColloctionPage = () => {
     const [coverImage, setCoverImage] = useState("");
     const { data: wishListDatas, isLoading, error } = useUserWishlist();
     useEffect(() => {
-        console.log("wishListDatas?.data?.count",wishListDatas?.count)
+        console.log("wishListDatas?.data?.count", wishListDatas?.count)
         setItemCount(wishListDatas?.count || 0);
-        setCoverImage(wishListDatas?.data?.[0]?.cover_photo || "");
+        setCoverImage(wishListDatas?.data?.[0]?.cover_image[0] || "");
 
     }, [wishListDatas, isLoading, error])
 
@@ -28,8 +28,10 @@ const ColloctionPage = () => {
             {/* Main Content Area */}
             <div className="bg-[black] rounded-2xl p-8 min-h-[300px] flex flex-col items-center 
            justify-center border border-[#232323] max-w-lg mx-auto">
-                <div className="collection-listing-div ">
-                    <div className="text-lg text-gray-300 mb-4">{itemCount == 0 ? "No listing yet" : itemCount}</div>
+                <div
+                    onClick={() => router.push('/collection/favourites')}
+                    className="collection-listing-div " style={{ backgroundImage: `url(${coverImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    {/* <div className="text-lg text-black mb-4">{itemCount == 0 ? "No listing yet" : itemCount}</div> */}
                     <button className="flex items-center justify-center w-10 h-10 
                     rounded-full bg-[#232323] text-[#EDB75E] text-xl mb-2">
                         <FaPlus />
@@ -40,7 +42,8 @@ const ColloctionPage = () => {
                         onClick={() => router.push('/collection/favourites')}>Favorites</div>
                     <div className="text-base text-white text-[12px]">Favorites</div>
 
-                    <div className="flex items-center gap-2  text-[#EDB75E] justify-end marginTop15" onClick={() => router.push('/collection/favourites')}>
+                    <div className="flex items-center gap-2  text-[#EDB75E] justify-end marginTop15"
+                        onClick={() => router.push('/collection/favourites')}>
                         <span>{itemCount}</span>
                         <FaHome />
                         <span>Home</span>
