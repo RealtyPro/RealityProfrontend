@@ -7,6 +7,7 @@ export interface Blog {
     created_at: string;
     updated_at: string;
     // meta: BlogMeta;
+    image: string;
     author: string;
     category: string;
     date: string;

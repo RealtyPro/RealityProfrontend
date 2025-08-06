@@ -9,8 +9,8 @@
 const nextConfig: import('next').NextConfig = {
   output: 'standalone',
   images: {
-    // allow external images from Google Cloud Storage
-    domains: ['storage.googleapis.com'],
+    // allow external images from Google Cloud Storage and demo site images
+    domains: ['storage.googleapis.com', 'demorealestate.webnapps.net'],
   },
 };
 

@@ -9,7 +9,7 @@ export const NewsArticleCard = ({item}:NewsArticleCardProps) => {
         <article className="news-card">
             <div className="news-image">
                 <Image
-                    src="/images/image1.png"
+                    src={item?.image}
                     alt="Article"
                     width={400}
                     height={250}

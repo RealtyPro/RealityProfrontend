@@ -7,7 +7,7 @@ import MyAgentPage  from "@/main-pages/dashboard/MyAgent";
 export default function MyAgent() {
     return(
         <div className="min-h-screen flex flex-col bg-[#171717] text-white">
-                    <DashboardHeader activeHeader="collection" />
+                    {/* <DashboardHeader activeHeader="collection" /> */}
                     <Header activeHeader="dashboard" />
                     <div className="h-[9vh]"></div>
                     <div className="flex flex-1 min-h-0 bg-[#171717]">

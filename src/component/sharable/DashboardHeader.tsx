@@ -20,6 +20,7 @@ export const DashboardHeader = ({ activeHeader }: headerProps) => {
         mutationFn: () => postUserLogout(),
 
         onSuccess: (data) => {
+             sessionStorage.clear();
             if (typeof window !== "undefined") {
                 sessionStorage.clear();
                 window.location.href = "/home";

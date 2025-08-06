@@ -62,15 +62,9 @@ const FavouritesPage = () => {
 
     });
     const { data: wishListDatas } = useUserWishlist();
-    const { data: propertyListDatas, isLoading, isError, } = useMlsPropertyList(searchFilters);
-
-
     useEffect(() => {
-        console.log("wishListDatas?.data?.count", wishListDatas?.count)
         setMergedFavorites(wishListDatas?.data || []);
         setItemCount(wishListDatas?.count || 0);
-        
-
     }, [wishListDatas])
     // useEffect(() => {
     //     if (propertyListDatas?.data && favPropertyList.length > 0) {

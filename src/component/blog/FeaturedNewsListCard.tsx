@@ -8,7 +8,7 @@ export const FeaturedNewsListCard = ({item}:NewsListCardProps) => {
     return (
         <div className="row featured-div-mt">
             <div className="featured-blog-img">
-                <img className="featured-img" src="images/featured-news-img1.png" alt="Featured Blog"/>
+                <img className="featured-img" src={item.image} alt="Featured Blog"/>
             </div>
             <div>
                 <div className="date-div">

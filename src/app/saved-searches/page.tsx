@@ -7,7 +7,7 @@ import  SavedSearchesPage  from "@/main-pages/dashboard/SavedSearchesPage";
 export default function SavedSearches() {
     return(
         <div className="min-h-screen flex flex-col bg-[#171717] text-white">
-                    <DashboardHeader activeHeader="saved-searches" />
+                    {/* <DashboardHeader activeHeader="saved-searches" /> */}
                     <Header activeHeader="dashboard" />
                     <div className="h-[9vh]"></div>
                     <div className="flex flex-1 min-h-0 bg-[#171717]">

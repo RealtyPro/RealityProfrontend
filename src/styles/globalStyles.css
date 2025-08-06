@@ -226,6 +226,9 @@ p {
 .marginTop {
     margin-top: 3%;
 }
+.marginTop6 {
+    margin-top: 6% !important;
+}
 
 .bgblack {
     background-color: #000000;
@@ -850,7 +853,12 @@ p {
     gap: 35px;
     margin-bottom: 100px;
 }
-
+.properties-grid-home {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    margin-bottom: 100px;
+}
 .mls-properties-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -881,9 +889,11 @@ p {
 .paddingTop20 {
     padding-top: 20% !important;
 }
-.left-justify{
+
+.left-justify {
     justify-content: left !important;
 }
+
 .bottom-border {
     border-bottom-left-radius: 50px !important;
     border-bottom-right-radius: 80px !important;
@@ -1820,6 +1830,12 @@ p {
     justify-content: flex-end;
 }
 
+.blog-card-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
 .news-blog-card-img1 {
     background-image: url('../../public/images/image3.png');
 }
@@ -1997,7 +2013,7 @@ p {
 }
 
 .single-blog-banner {
-    background-image: url('../../public/images/home-worth-image.png');
+    /* background-image: url('../../public/images/home-worth-image.png'); */
     background-size: cover;
     background-repeat: no-repeat;
 }

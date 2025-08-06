@@ -2,8 +2,9 @@
 import LoginModal from "@/main-pages/auth/LoginModal";
 import RegistrationModal from "@/main-pages/auth/RegistrationModal";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { DashboardHeader } from "./DashboardHeader";
 
 interface headerProps {
     activeHeader: string;
@@ -13,6 +14,17 @@ export const Header = ({ activeHeader }: headerProps) => {
 
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+    const [isUserDashboard, setIsUSerDashboard] = useState(false);
+    useEffect(() => {
+        const token = sessionStorage.getItem("access_token");
+        console.log(token)
+        if (token == null) {
+            setIsUSerDashboard(false)
+        }
+        else {
+            setIsUSerDashboard(true)
+        }
+    }, [])
     const handleModal = () => {
         setIsLoginModalOpen(true);
     }
@@ -56,7 +68,12 @@ export const Header = ({ activeHeader }: headerProps) => {
                 onOpenRegistration={handleOpenRegistration}
                 isHeader={true}
             />
-            <header className={`header ${activeHeader === "dashboard" ? "marginTop dashboard-header-border " : "none"}`}>
+            {isUserDashboard && (
+                <DashboardHeader activeHeader="none" />
+            )
+
+            }
+            <header className={`header ${isUserDashboard ? "marginTop dashboard-header-border " : "none"}`}>
                 <div className="container">
                     <div className="nav-brand">
                         <div className="logo ml-5">
@@ -104,7 +121,7 @@ export const Header = ({ activeHeader }: headerProps) => {
                                     onClick={(e) => e.preventDefault()}
                                     className={activeHeader == "blog" ? "nav-link active" : "nav-link"}>Blog</a></li>
                             <li onClick={() => router.push('/contact-us')}><a href="#"
-                             onClick={(e) => e.preventDefault()}
+                                onClick={(e) => e.preventDefault()}
                                 className={activeHeader == "contact-us" ? "nav-link active" : "nav-link"}>Contact us</a></li>
                             <li onClick={handleDashboard}>
                                 <a href="#" className="nav-link">

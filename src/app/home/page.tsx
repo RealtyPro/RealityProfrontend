@@ -10,7 +10,7 @@ import SearchContainer from "@/main-pages/home/SearchContainer";
 export default function HomePage() {
 
     return (
-        <div>
+        <div >
             {/* Header  */}
             <Header activeHeader={"home"} />
 

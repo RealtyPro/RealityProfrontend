@@ -1,8 +1,146 @@
+"use client"
 import Image from "next/image";
+import { useState } from "react";
+import { postEnquiry } from "@/services/auth/AuthServices";
+import { useMutation } from "@tanstack/react-query";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ContactUsMainPage() {
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        message: ""
+    });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+    const enquiryMutation = useMutation({
+        mutationFn: (data: object) => postEnquiry(data),
+        onSuccess: (response) => {
+            // Clear form after successful submission
+            setFormData({
+                first_name: "",
+                last_name: "",
+                email: "",
+                phone: "",
+                message: ""
+            });
+            setErrors({});
+
+            // Show success toast
+            toast.success("Thank you for your message. We will get back to you soon!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+        },
+        onError: (error: any) => {
+            if (error.response?.data?.errors) {
+                setErrors(error.response.data.errors);
+                // Show validation errors in toast
+                Object.values(error.response.data.errors).forEach((message: any) => {
+                    toast.error(message, {
+                        position: "top-right",
+                        autoClose: 20000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true
+                    });
+                });
+            } else {
+                console.error("Error submitting enquiry:", error);
+                // Show generic error toast
+                toast.error("Something went wrong. Please try again later.", {
+                    position: "top-right",
+                    autoClose: 20000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+            }
+        }
+    });
+
+    const validateForm = () => {
+        const newErrors: { [key: string]: string } = {};
+
+        if (!formData.first_name.trim()) {
+            newErrors.first_name = "First name is required";
+        }
+        if (!formData.last_name.trim()) {
+            newErrors.last_name = "Last name is required";
+        }
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email";
+        }
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        }
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        }
+        if (!/^\d{10}$/.test(formData.phone.trim())) {
+            newErrors.phone = "Phone number must be exactly 10 digits";
+        }
+        if (!formData.message.trim()) {
+            newErrors.message = "Message is required";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (validateForm()) {
+            let data = {
+                name: formData.first_name + " " + formData.last_name,
+                email: formData.email,
+                contact_no: parseInt(formData.phone),
+                description: formData.message
+            }
+            enquiryMutation.mutate(data);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        // Clear error for this field when user starts typing
+        if (errors[name]) {
+            setErrors(prev => ({
+                ...prev,
+                [name]: ""
+            }));
+        }
+    };
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={20000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <section className="hero" >
                 <div className="hero-overlay"></div>
                 <div className="container">
@@ -23,16 +161,56 @@ export default function ContactUsMainPage() {
                     <div className="contact-left">
                         <h2>Get In Touch</h2>
                         <p className="sub">Santa Barbara County for over twenty years and we're</p>
-                        <form className="contact-form">
-                            <input type="text" placeholder="First Name"
-                                className="bg-[#000000] border border-[#313131]" />
-                            <input type="text" placeholder="Last Name" />
-                            <input type="email" placeholder="Email" />
-                            <input type="text" placeholder="Phone" />
-                            <textarea placeholder="Message" className="full" />
+                        <form className="contact-form" onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                name="first_name"
+                                placeholder="First Name"
+                                value={formData.first_name}
+                                onChange={handleChange}
+                                className="bg-[#000000] border border-[#313131]"
+                            />
+                            <input
+                                type="text"
+                                name="last_name"
+                                placeholder="Last Name"
+                                value={formData.last_name}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="text"
+                                name="phone"
+                                placeholder="Phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+                            <textarea
+                                name="message"
+                                placeholder="Message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                className="full"
+                            />
+
+                            <p className="contact-info w-full full mt-4">By submitting this form I agree to be contacted by Lavalite. This includes receiving automated calls, texts and emails about real estate, finance and related topics.</p>
+
+                            <div className="contact-submit flex justify-end mt-4 full">
+                                <button
+                                    type="submit"
+                                    className="btn-primary"
+                                    disabled={enquiryMutation.isPending}
+                                >
+                                    {enquiryMutation.isPending ? 'Submitting...' : 'Submit'}
+                                </button>
+                            </div>
                         </form>
-                        <p className="contact-info">By submitting this form I agree to be contacted by Lavalite. This includes receiving automated calls, texts and emails about real estate, finance and related topics.</p>
-                        <div className="contact-submit"><button className="btn-primary">Submit</button></div>
                     </div>
                     <div className="contact-right">
                         <Image src="/images/contactusimg.png" alt="location" fill style={{ objectFit: 'cover' }} />

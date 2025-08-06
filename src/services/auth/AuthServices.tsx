@@ -30,3 +30,25 @@ export const login = async (data:object) => {
       throw error;
     }
   };
+   export const postNewsLetter = async (data:object) => {
+
+    try {
+       
+      const response = await axiosInstance.post(`/v1/newsletter?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}`, data);
+      // alert(response.data.message)
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+    export const postEnquiry = async (data:object) => {
+
+    try {
+       
+      const response = await axiosInstance.post(`/v1/enquiry?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}`, data);
+      // alert(response.data.message)
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };

@@ -43,7 +43,7 @@ export const PropertyCard = ({ item, handleModal }: PropertyCardProps) => {
             handleModal();
         }
         else {
-          
+
             removeWishlistMutation.mutate(id);
         }
     }
@@ -52,7 +52,7 @@ export const PropertyCard = ({ item, handleModal }: PropertyCardProps) => {
         <div className="property-card">
             <div className="property-image">
                 <Image
-                    src={item.cover_image[0]}
+                    src={item.cover_image ? item.cover_image[0] : item.cover_photo[0]}
                     alt="Property"
                     width={400}
                     height={250}
@@ -126,7 +126,10 @@ export const PropertyCard = ({ item, handleModal }: PropertyCardProps) => {
             <div className="flex items-center justify-between mb5 w-full padding2">
                 <span className="listed-bold-span">Listed With</span>
                 <button onClick={() => removeFromWishlist(item.id)}>
-                    < IoMdHeart size={24} color="#EDB75E" />
+                    {item.is_wishlisted ?
+                        <IoMdHeart size={24} color="#EDB75E" /> :
+                        <IoIosHeartEmpty size={24} color="#EDB75E" />
+                    }
                 </button>
             </div>
         </div>

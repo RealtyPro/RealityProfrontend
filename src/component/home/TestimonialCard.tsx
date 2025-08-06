@@ -10,8 +10,7 @@ export const TestmonialCard = ({ item, index }: { item: any; index: number }) =>
                 <span className="star">★</span>
                 <span className="star">★</span>
             </div>
-            <p className="testimonial-text">Lorem ipsum is simply free text dolor sit amet, consectetur adipisicing
-                elit, sed do incididunt ut labore et</p>
+            <p className="testimonial-text">{item.details}</p>
             <div className="testimonial-author">
                 <Image
                     src="/images/review.png"
@@ -21,7 +20,7 @@ export const TestmonialCard = ({ item, index }: { item: any; index: number }) =>
                     className="author-avatar"
                 />
                 <div className="author-info">
-                    <h4>Cody Fisher</h4>
+                    <h4>{item.slug}</h4>
                     <span>Market Manager</span>
                 </div>
             </div>

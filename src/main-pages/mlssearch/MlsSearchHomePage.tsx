@@ -5,11 +5,14 @@ import { MlsListingOptions } from "@/component/mlsSearchMenu/MlsListingOptions"
 import { useEffect, useState } from "react"
 import { MlsMapPage } from "@/component/mlsSearchMenu/MlsMpPage"
 import { useMlsPropertyList } from "@/services/properties/PropertyQueries"
-import { useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { MlsPropertyCard } from "@/component/mlsSearchMenu/MlsPropertyCard"
 import RegistrationModal from "../auth/RegistrationModal"
 import LoginModal from "../auth/LoginModal"
 import GoogleMapComponent from "@/component/mlsSearchMenu/MlsMap"
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { postUserPropertyWishlist, removeWishlistItem } from "@/services/profile/ProfileServices"
 type Property = {
     id: string;
     // add other fields as needed, e.g. title: string;
@@ -20,6 +23,8 @@ const MlsSerchHomePage = () => {
     const queryClient = useQueryClient();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
     const [searchFilters, setSearchFilters] = useState(() => {
         // read once during initial render (browser-side only)
         const type = typeof window !== "undefined" ? sessionStorage.getItem("prop_type") ?? "" : "";
@@ -72,11 +77,6 @@ const MlsSerchHomePage = () => {
             interior_features: ''
         };
     });
-
-    /* -----------------------------------------------------------
-       Remove the temporary session-stored filters when the user
-       navigates away from this page or reloads the tab.
-    ------------------------------------------------------------*/
     useEffect(() => {
         const clearTempFilters = () => {
             sessionStorage.removeItem("prop_type");
@@ -87,6 +87,36 @@ const MlsSerchHomePage = () => {
         // clear on unmount (navigation inside the SPA)
         return () => clearTempFilters();
     }, []);
+    const postWishlistMutation = useMutation({
+        mutationFn: (property: any) => postUserPropertyWishlist(property),
+        onSuccess: (data) => {
+
+            console.log("Property added to wishlist successfully:", data);
+            // Force refetch the property list
+            queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
+            // Optionally, you can also directly refetch
+            queryClient.refetchQueries({ queryKey: ['mlsPropertyList'] });
+            toast.success(data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+        },
+        onError: (error) => {
+            toast.error("Something went wrong. Please try again later.", {
+                position: "top-right",
+                autoClose: 20000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            console.error("Error while adding to wishlist:", error);
+        },
+    });
     const [properties, setProperties] = useState<Property[]>([]);
     const { data: propertyListDatas, isLoading, isError, } = useMlsPropertyList(searchFilters);
     const [openMapPropertyGrid, setOpenMapPropertyGrid] = useState(false);
@@ -96,6 +126,8 @@ const MlsSerchHomePage = () => {
         if (propertyListDatas && !isLoading && !isError) {
             console.log("Property List Data:", propertyListDatas);
             setProperties(propertyListDatas.data || []);
+            setCurrentPage(propertyListDatas.meta?.current_page || 1);
+            setTotalPages(propertyListDatas.meta?.last_page || 1);
 
         }
     }, [propertyListDatas, isLoading, isError]);
@@ -104,7 +136,39 @@ const MlsSerchHomePage = () => {
         queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
 
 
-    }, [searchFilters, queryClient]);
+    }, [searchFilters, currentPage, queryClient]);
+    const removeWishlistMutation = useMutation({
+        mutationFn: (id: string) => removeWishlistItem(id),
+
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
+             toast.success(data.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+        },
+        onError: (error) => {
+             toast.error("Something went wrong. Please try again later.", {
+                position: "top-right",
+                autoClose: 20000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            console.error("Error while adding to wishlist:", error);
+            console.error("Error  while deletion:", error);
+        },
+    });
+    const handlePageClick = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
     const handleOpenMapPropertyGrid = (open: boolean) => {
         setOpenMapPropertyGrid(open);
         setOpenMapGrid(false);
@@ -157,6 +221,18 @@ const MlsSerchHomePage = () => {
 
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={20000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <RegistrationModal
                 handleModal={handleModal}
                 isOpen={isRegistrationModalOpen}
@@ -209,8 +285,52 @@ const MlsSerchHomePage = () => {
 
                                         <MlsPropertyCard key={item.id} item={item}
                                             handleModal={handleModal}
-                                        />
+                                            postWishlistMutation={(data: any) => postWishlistMutation.mutate(data)}
+                                            removeWishlistMutation={(id: string) => removeWishlistMutation.mutate(id)}
+                                            />
                                     ))}
+                                </div>
+                                <div className="pagination">
+                                    <a
+                                        href="#"
+                                        className="page"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handlePageClick(currentPage - 1);
+                                        }}
+                                        style={{ pointerEvents: currentPage === 1 ? 'none' : 'auto', opacity: currentPage === 1 ? 0.4 : 1 }}
+                                    >
+                                        &laquo;
+                                    </a>
+
+                                    {Array.from({ length: totalPages }).map((_, index) => {
+                                        const page = index + 1;
+                                        return (
+                                            <a
+                                                href="#"
+                                                key={page}
+                                                className={`page ${page === currentPage ? "active" : ""}`}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    handlePageClick(page);
+                                                }}
+                                            >
+                                                {page}
+                                            </a>
+                                        );
+                                    })}
+
+                                    <a
+                                        href="#"
+                                        className="page"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handlePageClick(currentPage + 1);
+                                        }}
+                                        style={{ pointerEvents: currentPage === totalPages ? 'none' : 'auto', opacity: currentPage === totalPages ? 0.4 : 1 }}
+                                    >
+                                        &raquo;
+                                    </a>
                                 </div>
                             </div>
                         </section>

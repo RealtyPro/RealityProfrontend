@@ -1,43 +1,67 @@
 "use client"
 import { postUserPropertyWishlist } from "@/services/profile/ProfileServices";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { IoIosHeartEmpty } from "react-icons/io";
+import { IoMdHeart } from "react-icons/io";
 import Image from "next/image";
 
 interface PropertyCardProps {
     item: any;
     handleModal: () => void
+    postWishlistMutation:(data: any) => void;
+    removeWishlistMutation?: (id: string) => void;
 
 }
 
-export const MlsPropertyCard = ({ item, handleModal }: PropertyCardProps) => {
-    const postWishlistMutation = useMutation({
-        mutationFn: (property: any) => postUserPropertyWishlist(property),
+export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeWishlistMutation }: PropertyCardProps) => {
+    const queryClient = useQueryClient();
 
-        onSuccess: (data) => {
-            console.log("blog posted successfully:", data);
-            // window.location.href = "/admin/blog";
+    // const postWishlistMutation = useMutation({
+    //     mutationFn: (property: any) => postUserPropertyWishlist(property),
 
-        },
-        onError: (error) => {
-            console.error("Error  while creating new blog:", error);
-        },
-    });
-    const handleAddWishlist = (item: any) => {
+    //     onSuccess: (data) => {
+    //         console.log("blog posted successfully:", data);
+    //         // window.location.href = "/admin/blog";
+    //         queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
+
+
+    //     },
+    //     onError: (error) => {
+    //         console.error("Error  while creating new blog:", error);
+    //     },
+    // });
+    const handleAddWishlist = async (item: any) => {
+        const token = sessionStorage.getItem("access_token");
+        console.log(token)
+        if (token == null) {
+            handleModal();
+            return;
+        }
+        
+        const data = {
+            listing_id: item.mls_listingid,
+            listing_key: item.mls_listingkey,
+            agent_id: 12,
+            user_id: sessionStorage.getItem("customer_id"),
+            ListAgentMlsId: "NWM1307293"
+        };
+        
+        try {
+            await postWishlistMutation(data);
+            // The mutation's onSuccess will handle the query invalidation
+        } catch (error) {
+            console.error("Error adding to wishlist:", error);
+        }
+    }
+     const removeFromWishlist = (id: string) => {
         const token = sessionStorage.getItem("access_token");
         console.log(token)
         if (token == null) {
             handleModal();
         }
         else {
-            let data = {
-                listing_id: item.mls_listingid,
-                listing_key: item.mls_listingkey,
-                agent_id: 12,
-                user_id: sessionStorage.getItem("customer_id"),
-                ListAgentMlsId: "NWM1307293"
-            }
-            postWishlistMutation.mutate(data);
+
+            removeWishlistMutation && removeWishlistMutation(id);
         }
     }
     const handleViewProperty = (item: any) => {
@@ -54,25 +78,25 @@ export const MlsPropertyCard = ({ item, handleModal }: PropertyCardProps) => {
                     width={400}
                     height={250}
                 />
-              
+
             </div>
             <div className="mls-property-info">
                 <div className="flex flex-wrap -mx-4">
-                     <div className="w-full sm:w-7/12 px-4"> 
-                     <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
+                    <div className="w-full sm:w-7/12 px-4">
+                        <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
                     </div>
                     <div className="w-full sm:w-5/12 px-4 items-end-safe  mls-span">
-                    <span>{item.beds} Bed</span>
-                    <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
-                    <span>{item.baths} Bath</span>
-                    <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
-                    <span>{item.square_footage} Sq Ft</span>
+                        <span>{item.beds} Bed</span>
+                        <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                        <span>{item.baths} Bath</span>
+                        <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                        <span>{item.square_footage} Sq Ft</span>
                     </div>
-            </div>
+                </div>
 
 
-              
-               
+
+
                 <div className="property-location">
                     {/* <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
                         fill="none">
@@ -85,12 +109,15 @@ export const MlsPropertyCard = ({ item, handleModal }: PropertyCardProps) => {
                     </svg> */}
                     <span>{item.address}</span>
                 </div>
-                
+
             </div>
             <div className="flex items-center justify-between mb5 w-full padding2">
                 <span className="listed-bold-span">Listed With</span>
-                <button onClick={() => handleAddWishlist(item)}>
-                    <IoIosHeartEmpty size={24} color="#EDB75E" />
+                <button onClick={item.is_wishlisted ?() => removeFromWishlist(item.id) :() => handleAddWishlist(item)}>
+                    {item.is_wishlisted ?
+                        <IoMdHeart size={24} color="#EDB75E" /> :
+                        <IoIosHeartEmpty size={24} color="#EDB75E" />
+                    }
                 </button>
             </div>
         </div>

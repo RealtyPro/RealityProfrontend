@@ -2,9 +2,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchArticleList, fetchBlogList, fetchNewsList, fetchSingleBlog } from "./BlogServices";
 
-export const useBlogList = () => {
+export const useBlogList = (data: { pageLimit?: number; }) => {
     return useQuery({ queryKey: ['bloglist', ], queryFn: () => 
-       fetchBlogList() });
+       fetchBlogList(data) });
   };
   export const useNewsList = () => {
     return useQuery({ queryKey: ['newslist', ], queryFn: () => 

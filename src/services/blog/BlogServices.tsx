@@ -1,7 +1,7 @@
 import axiosInstance from "../Api";
 import { Enquiry } from "@/types/Enquiry";
-export const  fetchBlogList =async () =>{
-    const response = await axiosInstance.get(`/v1/blogs?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}`);
+export const  fetchBlogList =async (data: { pageLimit?: number; }) =>{
+    const response = await axiosInstance.get(`/v1/blogs?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}&page=${data.pageLimit}`);
     return response.data;
 }
 export const  fetchNewsList =async () =>{

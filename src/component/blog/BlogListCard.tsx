@@ -12,7 +12,7 @@ export const BlogListCard = ({ item }: BlogListCardProps) => {
 
     return (
         <div
-            className="news-blog-card"
+            className="news-blog-card blog-card-img  "
             style={{ backgroundImage: item.image ? `url(${item.image})` : ` url('../../public/images/image3.png')` }}
         >
             <div className="news-blog-info">
