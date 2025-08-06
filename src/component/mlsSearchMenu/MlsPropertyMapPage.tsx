@@ -5,10 +5,12 @@ import GoogleMapComponent from "./MlsMap"
 import { MlsPropertyCard } from "./MlsPropertyCard"
 interface PropertyCardProps {
     properties: any;
-    handleModal: () => void
+    handleModal: () => void;
+      postWishlistMutation:(data: any) => void;
+    removeWishlistMutation?: (id: string) => void;
 
 }
-export const MlsPropertyMapPage = ({ properties, handleModal }: PropertyCardProps) => {
+export const MlsPropertyMapPage = ({ properties, handleModal,postWishlistMutation,removeWishlistMutation }: PropertyCardProps) => {
     return (
 
         <div className="min-h-screen flex items-center justify-center bg-black-100 p-5 marginTop padding2">
@@ -21,6 +23,9 @@ export const MlsPropertyMapPage = ({ properties, handleModal }: PropertyCardProp
                             {properties.map((item: any) => (
 
                                 <MlsPropertyCard key={item.id} item={item}
+                                    postWishlistMutation={postWishlistMutation}
+                                    removeWishlistMutation={ removeWishlistMutation}
+
                                     handleModal={handleModal}
                                 />
                             ))}

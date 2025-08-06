@@ -142,7 +142,7 @@ const MlsSerchHomePage = () => {
 
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
-             toast.success(data.message, {
+            toast.success(data.message, {
                 position: "top-right",
                 autoClose: 5001,
                 hideProgressBar: false,
@@ -152,7 +152,7 @@ const MlsSerchHomePage = () => {
             });
         },
         onError: (error) => {
-             toast.error("Something went wrong. Please try again later.", {
+            toast.error("Something went wrong. Please try again later.", {
                 position: "top-right",
                 autoClose: 20000,
                 hideProgressBar: false,
@@ -269,6 +269,9 @@ const MlsSerchHomePage = () => {
             <div >
                 {openMapPropertyGrid ?
                     <MlsPropertyMapPage
+                        postWishlistMutation={(data: any) => postWishlistMutation.mutate(data)}
+                        removeWishlistMutation={(id: string) => removeWishlistMutation.mutate(id)}
+
                         properties={properties || []}
                         handleModal={handleModal}
                     /> : <></>
@@ -287,7 +290,7 @@ const MlsSerchHomePage = () => {
                                             handleModal={handleModal}
                                             postWishlistMutation={(data: any) => postWishlistMutation.mutate(data)}
                                             removeWishlistMutation={(id: string) => removeWishlistMutation.mutate(id)}
-                                            />
+                                        />
                                     ))}
                                 </div>
                                 <div className="pagination">
