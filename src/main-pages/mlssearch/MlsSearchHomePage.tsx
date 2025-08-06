@@ -144,7 +144,7 @@ const MlsSerchHomePage = () => {
             queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
              toast.success(data.message, {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 5001,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
