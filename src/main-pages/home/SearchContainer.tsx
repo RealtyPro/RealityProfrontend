@@ -1,27 +1,40 @@
 "use client"
+import { useNeighborhoodList } from "@/services/neighborhood/NeighborhoodQueries";
 import { useEffect, useState } from "react";
+type Neighborhood = {
+    id: number;
+    name: string;
+};
 
 const SearchContainer = () => {
     const [location, setLocation] = useState('');
     const [propertyType, setPropertyType] = useState('');
     const [priceMax, setPriceMax] = useState('');
-     useEffect(() => {
-            const clearTempFilters = () => {
-                sessionStorage.removeItem("prop_type");
-                sessionStorage.removeItem("prop_location");
-                sessionStorage.removeItem("prop_max_price");
-            };
-    
-            // clear on unmount (navigation inside the SPA)
-            return () => clearTempFilters();
-        }, []);
+    const [neighborhood, setNeighborhood] = useState<Neighborhood[]>([]);
+    const { data: neighborListDatas, isLoading, error } =
+        useNeighborhoodList();
+    useEffect(() => {
+        if (neighborListDatas && !isLoading && !error) {
+            setNeighborhood(neighborListDatas.data || []);
+        }
+    }, [neighborListDatas, isLoading, error]);
+    useEffect(() => {
+        const clearTempFilters = () => {
+            sessionStorage.removeItem("prop_type");
+            sessionStorage.removeItem("prop_location");
+            sessionStorage.removeItem("prop_max_price");
+        };
+
+        // clear on unmount (navigation inside the SPA)
+        return () => clearTempFilters();
+    }, []);
     const handleClick = () => {
         sessionStorage.setItem("prop_location", location);
         sessionStorage.setItem("prop_type", propertyType);
         sessionStorage.setItem("prop_max_price", priceMax);
         window.location.href = '/properties'
     }
-   
+
     return (
         <div className="search-container">
             <div className="search-fields">
@@ -31,10 +44,17 @@ const SearchContainer = () => {
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}>
                         <option value="">All</option>
+
+                        {neighborhood.map((item) => (
+                            <option key={item.id} value={item.name}>{item.name}</option>
+                        ))
+
+                        }
+                        {/* <option value="">All</option>
                         <option value="Abu Dhabi">Abu Dhabi</option>
                         <option value="Dubai">Dubai</option>
                         <option value="Sharjah">Sharjah</option>
-                        <option value="Ajman">Ajman</option>
+                        <option value="Ajman">Ajman</option> */}
                     </select>
                 </div>
                 <div className="search-field">

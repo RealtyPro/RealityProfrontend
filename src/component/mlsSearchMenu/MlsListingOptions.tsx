@@ -1,5 +1,8 @@
+"use client";
+import { useNeighborhoodList } from "@/services/neighborhood/NeighborhoodQueries";
 import { SearchFilters } from "@/types/Property";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface MlsListingOptionsProps {
     handleOpenMapPropertyGrid: () => void;
@@ -11,16 +14,35 @@ interface MlsListingOptionsProps {
     handleSearch: (value: any, key: keyof SearchFilters) => void;
     searchFilters: SearchFilters;
 }
+type Neighborhood = {
+    id: number;
+    name: string;
+};
 
 export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid,
     handleOpenPropertyGrid, openMapPropertyGrid, openMapGrid, openPropertyGrid, handleSearch
-    ,searchFilters }: MlsListingOptionsProps) => {
+    , searchFilters }: MlsListingOptionsProps) => {
+    const [neighborhood, setNeighborhood] = useState<Neighborhood[]>([]);
+    const loc = typeof window !== "undefined" ? sessionStorage.getItem("prop_location") ?? "" : "";
+
+    const { data: neighborListDatas, isLoading, error } =
+        useNeighborhoodList();
+    useEffect(() => {
+        if (loc != "") {
+
+        }
+    }, [loc]);
+    useEffect(() => {
+        if (neighborListDatas && !isLoading && !error) {
+            setNeighborhood(neighborListDatas.data || []);
+        }
+    }, [neighborListDatas, isLoading, error]);
     return (
         <div className="flex flex-1 justify-between items-center p-4 bg-white shadow rounded mls-searchmenu container mx-auto">
             <div className="flex mls-searchmenu items-center gap-4 bg-white p-4 rounded shadow container mx-auto flex items-center gap-4">
                 {/* Search Box */}
 
-                <div className="relative flex-2">
+                <div className="relative flex-1">
                     {/* Property Type Dropdown */}
                     <select style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="mls-listing-option-list px-3 py-2 focus:outline-none hover:outline-none active:outline-none focus:ring-2 focus:ring-[#EDB75E]">
                         <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="" className="bg-black text-white">All Listing</option>
@@ -30,7 +52,21 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
                         <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="townhouse">Townhouse</option>
                     </select>
                 </div>
-                <div className="relative flex-2">  </div>
+                <div className="relative flex-1">
+                    {/* Beds Dropdown */}
+                    <select
+                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="px-3 py-2 mls-listing-option-list focus:outline-none hover:outline-none active:outline-none focus:ring-2 focus:ring-[#EDB75E]"
+                        value={searchFilters.mls_city}
+                        onChange={(e) => handleSearch(e.target.value, 'mls_city')}>
+                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">Location</option>
+                        {neighborhood.map((item) => (
+                            <option key={item.id} value={item.name}
+                                style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} >{item.name}</option>
+                        ))}
+
+                    </select>
+                </div>
+                {/* <div className="relative flex-2">  </div> */}
                 <div className="relative flex-1">
                     <div className="flex items-center  w-48">
                         <span className="text-sm mr-5">Show Map</span>

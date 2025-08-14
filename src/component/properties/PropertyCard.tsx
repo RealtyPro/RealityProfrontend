@@ -8,9 +8,10 @@ import { IoMdHeart } from "react-icons/io";
 interface PropertyCardProps {
     item: any; // Replace 'any' with a more specific type if available
     handleModal: () => void
+    hideWishlist?: boolean; // Optional prop to hide wishlist button
 }
 
-export const PropertyCard = ({ item, handleModal }: PropertyCardProps) => {
+export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardProps) => {
     const queryClient = useQueryClient();
 
     const postWishlistMutation = useMutation({
@@ -125,12 +126,16 @@ export const PropertyCard = ({ item, handleModal }: PropertyCardProps) => {
             </div>
             <div className="flex items-center justify-between mb5 w-full padding2">
                 <span className="listed-bold-span">Listed With</span>
-                <button onClick={() => removeFromWishlist(item.id)}>
-                    {item.is_wishlisted ?
-                        <IoMdHeart size={24} color="#EDB75E" /> :
-                        <IoIosHeartEmpty size={24} color="#EDB75E" />
-                    }
-                </button>
+                {
+                    hideWishlist ? <></> :
+
+                        <button onClick={() => removeFromWishlist(item.id)}>
+                            {item.is_wishlisted ?
+                                <IoMdHeart size={24} color="#EDB75E" /> :
+                                <IoIosHeartEmpty size={24} color="#EDB75E" />
+                            }
+                        </button>
+                }
             </div>
         </div>
 

@@ -47,7 +47,7 @@ export const ImageGalleryModal = ({
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/75"
-      onClick={onClose}
+      // onClick={onClose}
     >
       <div
         className="relative w-full max-w-5xl px-4"
@@ -55,7 +55,7 @@ export const ImageGalleryModal = ({
       >
         {/* Close Button */}
         <button
-          className="absolute right-4 top-4 text-3xl font-bold text-white hover:text-gray-300"
+          className="absolute right-4 top-4 text-3xl font-bold text-white hover:text-gray-300 z-[9999]"
           onClick={onClose}
           aria-label="Close modal"
         >

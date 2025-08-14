@@ -47,7 +47,7 @@ const FilterTop = ({ handleSearch, searchFilters }: FilterTopProps) => {
                     <input
                         onChange={(e) => handleSearch(e.target.value, 'keyword')}
                         type="text"
-                        placeholder="Search properties..."
+                        placeholder="Search by city, country, ZIP "
                         className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#EDB75E] focus:ring-opacity-20 w-full"
                     />
                 </div>

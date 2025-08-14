@@ -10,9 +10,11 @@ import { MlsPropertyCard } from "@/component/mlsSearchMenu/MlsPropertyCard"
 import RegistrationModal from "../auth/RegistrationModal"
 import LoginModal from "../auth/LoginModal"
 import GoogleMapComponent from "@/component/mlsSearchMenu/MlsMap"
+import { useState as useHoverState } from "react"; // alias to avoid clash but easier
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { postUserPropertyWishlist, removeWishlistItem } from "@/services/profile/ProfileServices"
+import { MlsMapModalCard } from "@/component/mlsSearchMenu/MlsMapModalCard"
 type Property = {
     id: string;
     // add other fields as needed, e.g. title: string;
@@ -121,6 +123,8 @@ const MlsSerchHomePage = () => {
     const { data: propertyListDatas, isLoading, isError, } = useMlsPropertyList(searchFilters);
     const [openMapPropertyGrid, setOpenMapPropertyGrid] = useState(false);
     const [openMapGrid, setOpenMapGrid] = useState(false);
+    // hovered property for modal
+    const [hoveredProperty, setHoveredProperty] = useState<Property | null>(null);
     const [openPropertyGrid, setOpenPropertyGrid] = useState(true);
     useEffect(() => {
         if (propertyListDatas && !isLoading && !isError) {
@@ -131,6 +135,10 @@ const MlsSerchHomePage = () => {
 
         }
     }, [propertyListDatas, isLoading, isError]);
+        useEffect(()=>{
+            console.log("Hovered Property:", hoveredProperty);
+        },[hoveredProperty])
+
     useEffect(() => {
 
         queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
@@ -142,7 +150,7 @@ const MlsSerchHomePage = () => {
 
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: ['mlsPropertyList'] });
-            toast.success(data.message, {
+            toast.success("Propert removed from wishlist", {
                 position: "top-right",
                 autoClose: 5001,
                 hideProgressBar: false,
@@ -346,16 +354,22 @@ const MlsSerchHomePage = () => {
                 {openMapGrid ?
                     properties.length ? (
                         <section className="prop-container">
-                            <div className="container">
-                                <GoogleMapComponent markers={properties.map((p: any) => ({
-                                    lat: Number(p.latitude),
-                                    lng: Number(p.longitude),
-                                }))} />
+                            <div className="map-container" style={{ height: '600px' }}>
+                                <GoogleMapComponent
+                                    markers={properties.map((p: any) => ({
+                                        ...p,
+                                        lat: Number(p.latitude),
+                                        lng: Number(p.longitude),
+                                    }))}
+                                    onMarkerHover={(p) => setHoveredProperty(p)}
+                                />
                             </div>
                         </section>)
                         : (
                             <div>No properties found.</div>
                         ) : <></>}
+
+
             </div>
         </>
     )

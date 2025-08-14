@@ -13,15 +13,15 @@ export const TestmonialCard = ({ item, index }: { item: any; index: number }) =>
             <p className="testimonial-text">{item.details}</p>
             <div className="testimonial-author">
                 <Image
-                    src="/images/review.png"
+                    src={item?.image}
                     alt="Cody Fisher"
                     width={48}
                     height={48}
                     className="author-avatar"
                 />
                 <div className="author-info">
-                    <h4>{item.slug}</h4>
-                    <span>Market Manager</span>
+                    <h4>{item.name}</h4>
+                    <span>{item.position}</span>
                 </div>
             </div>
         </div>

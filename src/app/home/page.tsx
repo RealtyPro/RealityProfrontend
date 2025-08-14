@@ -62,25 +62,19 @@ export default function HomePage() {
 
                     </section>
 
-                    <div className="progress-dots">
-                        <span className="dot"></span>
-                        <span className="dot active"></span>
-                        <span className="dot"></span>
-                        <span className="dot"></span>
-                    </div>
 
                     <div className="about-content">
 
                         <div className="about-image">
-                            <img src="images/advisor-image.png" alt="Trusted Global Advisor" />
+                            <img src="/images/lincy-pic.jpg" alt="Trusted Global Advisor" />
                             <div className="advisor-card">
                                 <div className="advisor-info">
-                                    <span className="third-header-text">Mr George John</span>
-                                    <p className="advisor-title">Trusted Global Advisor.</p>
-                                    <p className="advisor-desc">With a strong foundation in real estate since 2002, combined with
-                                        expertise in corporate law, this professional has built a distinguished career in the
-                                        industry. Recognized among the Best Real Estate with expertise in corporate law, this
-                                        professional has built a distinguished career.</p>
+                                    <span className="third-header-text">Lincy Mathew</span>
+                                    <p className="advisor-title">Trusted Agent</p>
+                                    <p className="advisor-desc">Lincy Mathew is a dependable and accomplished real estate professional serving the greater Seattle area. She has called Redmond home for over 20 years, giving her a deep understanding of the local market and community.
+
+Lincy’s clients are her top priority, and she is committed to walking with them every step of the way—from the initial consultation to closing. Her approachable personality, positive outlook, and cheerful demeanor make connecting with her effortless, fostering trust and collaboration.
+</p>
                                     <button className="btn-primary">Send Inquire</button>
                                 </div>
                             </div>
@@ -107,7 +101,7 @@ export default function HomePage() {
             {/* <!-- Neighborhoods Section --> */}
             <NeighborhoodHomeList />
             {/* <!-- Testimonials Section --> */}
-            <section className="testimonials">
+            {/* <section className="testimonials">
 
 
                 <div className="container">
@@ -144,7 +138,7 @@ export default function HomePage() {
                         <img src="images/review.png" alt="Advisor" className="advisor-avatar" />
                     </div>
                 </div>
-            </section>
+            </section> */}
             {/* <!-- News & Articles Section --> */}
             <section className="news">
                 <div className="container">

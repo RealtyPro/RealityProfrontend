@@ -28,7 +28,7 @@ const TestimonialList = () => {
 
                 {testimonials.length ? (
                     <>
-                        {testimonials.map((item, index) => (
+                        {testimonials.slice(0, 2).map((item, index) => (
                             <div key={index}>
                                 <TestmonialCard item={item} index={index} />
 

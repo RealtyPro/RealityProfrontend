@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function AboutUsMainPage() {
+export default function AboutUsMainPageold() {
     return (
         <>
             <section className="hero" style={{ backgroundImage: "url('images/aboutus-coverpic.png')" }}>

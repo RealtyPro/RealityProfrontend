@@ -1,14 +1,14 @@
 "use client";
 import { PropertyCard } from "@/component/properties/PropertyCard"
 import Providers from "@/provider/QueryClientProvider";
-import { useMlsPropertyList, usePropertyList } from "@/services/properties/PropertyQueries";
+import { useMlsPropertyList } from "@/services/properties/PropertyQueries";
 import { useEffect, useState } from "react";
 type Property = {
     id: string;
     // add other fields as needed, e.g. title: string;
     [key: string]: string;
 };
-const PropertyHomeList = () => {
+const FeaturedProperties = () => {
     const [properties, setProperties] = useState<Property[]>([]);
     const [selectedType, setSelectedType] = useState<string>(''); // '' means All
 
@@ -85,26 +85,9 @@ const PropertyHomeList = () => {
     }
     return (
         <Providers>
-            <div className="property-filters">
-                <button
-                    className={`filter-btn ${selectedType === '' ? 'active' : ''}`}
-                    onClick={() => handleFilterChange('')}
-                >All</button>
-                <button
-                    className={`filter-btn ${selectedType === 'Residential' ? 'active' : ''}`}
-                    onClick={() => handleFilterChange('Residential')}
-                >Residential</button>
-                <button
-                    className={`filter-btn ${selectedType === 'Commercial' ? 'active' : ''}`}
-                    onClick={() => handleFilterChange('Commercial')}
-                >Commercial</button>
-                <button
-                    className={`filter-btn ${selectedType === 'Apartment' ? 'active' : ''}`}
-                    onClick={() => handleFilterChange('Apartment')}
-                >Apartment</button>
-            </div>
+         
 
-            <div className="properties-grid-home">
+            <div className="properties-grid-home marginTop6">
                 {properties.length ? (
                     <>
                         {properties.slice(0, 3).map((item) => (
@@ -119,11 +102,11 @@ const PropertyHomeList = () => {
                     <div>No properties found.</div>
                 )}
             </div>
-            <div className="section-cta">
+            {/* <div className="section-cta">
                 <button className="btn-secondary"
                     onClick={handleClick}>See All Properties</button>
-            </div>
+            </div> */}
         </Providers>
     )
 }
-export default PropertyHomeList
+export default FeaturedProperties

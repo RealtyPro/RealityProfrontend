@@ -151,6 +151,7 @@ const FavouritesPage = () => {
                                     {mergedFavorites.map((item) => (
 
                                         <PropertyCard key={item.id} item={item}
+                                            hideWishlist={false}
                                             handleModal={() => { console.log("clicked") }}
                                         />
                                     ))}
