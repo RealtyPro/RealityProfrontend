@@ -396,7 +396,19 @@ p {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 120px;
+    padding-top: 10px;
+}
+.hero-neighborhood {
+    height: 310px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .hero-overlay {
@@ -415,7 +427,7 @@ p {
 }
 
 .hero-text {
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 }
 
 .hero-text h1 {
@@ -852,7 +864,8 @@ p {
 .properties-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
+    gap: 15px;
+        padding-right: 20px;
     margin-bottom: 100px;
 }
 .properties-grid-home {
@@ -904,7 +917,7 @@ p {
 .property-card {
     background-color: #171717;
     border: 2px solid #4F4F4F;
-    border-radius: 30px;
+    border-radius: 5px;
     overflow: hidden;
     transition: transform 0.3s ease;
 }
@@ -2004,11 +2017,17 @@ p {
     font-size: 9pt !important;
     font-weight: 400 !important;
 }
-
+.mls-searchmenu-yellow{
+    background: #edb75e;
+}
+.hovertext:hover {
+    color: #000;
+}
 .mlscardheading {
-    font-size: 18pt !important;
+    font-size: 14pt !important;
     line-height: 1.2;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
+    color: #edb75e;
 }
 
 .date-div {
@@ -2067,7 +2086,7 @@ p {
 }
 
 .single-blog-banner-hero {
-    height: 85vh;
+    height: 400px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2254,12 +2273,22 @@ p {
 .yellow-text {
     color: #EDB75E !important;
 }
-
+.no-p-r{
+    padding-right: 0px;
+}
 .marginLeft_10 {
     margin: -10px;
     ;
 }
-
+.mt-4 {
+    margin-top: 4px !important;
+}
+.ml-4 {
+    margin-left: 4px !important;
+}
+.mr-4 {
+    margin-right: 4px !important;
+}
 .mls-page {
     background-size: cover;
     background-position: center;
@@ -2270,9 +2299,16 @@ p {
     text-align: center;
     margin-top: 15px;
     padding-top: 0px;
-    min-height: 16vh;
+    min-height: 14vh;
+    margin-left: 30px;
+    margin-right: 32px;
 }
-
+.mrgn30{
+        margin-left: 30px!important;
+}
+.mrgn10{
+    margin-right: 10px !important;
+}
 .justify-center-item {
     justify-content: flex-end;
 }
@@ -2330,16 +2366,16 @@ p {
 .mls-input,
 .mls-select {
     width: 100%;
-    padding: 10px;
-    border-radius: 25px;
-    border: 1px solid #665e53;
-    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #242322;
+    font-size: 14px;
+    padding: 5px 15px 5px 15px;
 }
 
-.mls-searchmenu select,
+/* .mls-searchmenu select,
 .mls-select {
     padding: 15px;
-}
+} */
 
 .MLSAdvanceSearch {
     position: fixed;
@@ -3051,4 +3087,8 @@ p {
     .contact-form {
         grid-template-columns: 1fr;
     }
+}
+.properlistinmap{
+    height: 1000px;
+    overflow: scroll;
 }

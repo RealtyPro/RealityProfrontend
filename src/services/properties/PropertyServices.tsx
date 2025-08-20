@@ -35,6 +35,11 @@ export const fetchMlsPropertyById = async (id: string) => {
     const response = await axiosInstance.get(`/v1/property/listingkey/${id}`);
     return response.data;
 };
+export const saveSearches = async (data:object) => {
+   
+    const response = await axiosInstance.post(`/v1/properties/saved-search?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID},data`);
+    return response.data;
+}
 // type PropertySearchParams = {
 //     pageLimit?: number;
 //     page?: number;

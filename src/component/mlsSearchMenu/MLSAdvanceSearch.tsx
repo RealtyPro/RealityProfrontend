@@ -210,7 +210,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
     return (
         <div className="MLSAdvanceSearch max-h-[600px] pb-20" onClick={() => onClose()} >
             <div
-                className=" p-6 MLSAdvanceSearch-container p-[20px] rounded-[20px] overflow-y-auto max-h-[400px] pb-10"
+                className=" p-6 MLSAdvanceSearch-container  p-[20px] rounded-[20px] overflow-y-auto max-h-[400px] pb-10"
                 onClick={e => e.stopPropagation()}
                 style={{ padding: "20px", borderRadius: "20px" }}
             >
@@ -250,7 +250,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <div className="flex-2">
                                         <select 
                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
-                                        className="border mls-input mls-select border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#EDB75E]">
+                                        className="border mls-input mls-select border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]">
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                              value="">No Min</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="100000">100,000</option>
@@ -262,7 +262,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <label className="block mb-2">To</label>
                                     </div>
                                     <div className="flex-2">
-                                        <select style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="border mls-input mls-select border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#EDB75E]">
+                                        <select style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="border mls-input mls-select border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]">
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="500000">500,000</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="1000000">1,000,000</option>
@@ -278,7 +278,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <select
                                             className="border mls-input mls-select border-gray-300 
                                         rounded px-3 py-2 focus:outline-none focus:ring-2 
-                                        focus:ring-[#EDB75E]"
+                                        focus:ring-[#151515]"
                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'lot_size_min')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value=""> No Min </option>
@@ -293,7 +293,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <div className="flex-2">
                                         <select className="border mls-input mls-select 
                                         border-gray-300 rounded px-3 py-2 focus:outline-none 
-                                        focus:ring-2 focus:ring-[#EDB75E]"
+                                        focus:ring-2 focus:ring-[#151515]"
                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'lot_size_max')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
@@ -309,7 +309,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                 <div className="flex gap-2">
                                     <select className="border mls-input mls-select 
                                     border-gray-300 rounded px-3 py-2 focus:outline-none 
-                                    focus:ring-2 focus:ring-[#EDB75E]"
+                                    focus:ring-2 focus:ring-[#151515]"
                                     style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                         onChange={(e) => handleSearch(e.target.value, 'stories')}>
                                         <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">Any</option>
@@ -327,7 +327,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <div className="flex-2">
                                         <select className="border mls-input mls-select 
                                         border-gray-300 rounded px-3 py-2 focus:outline-none
-                                         focus:ring-2 focus:ring-[#EDB75E]"
+                                         focus:ring-2 focus:ring-[#151515]"
                                          style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'square_footage_min')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Min</option>
@@ -342,7 +342,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <div className="flex-2">
                                         <select className="border mls-input mls-select border-gray-300
                                          rounded px-3 py-2 focus:outline-none focus:ring-2 
-                                         focus:ring-[#EDB75E]"
+                                         focus:ring-[#151515]"
                                          style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'square_footage_max')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
@@ -359,7 +359,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <div className="flex-2">
                                         <select className="border mls-input mls-select border-gray-300 
                                         rounded px-3 py-2 focus:outline-none focus:ring-2 
-                                        focus:ring-[#EDB75E]"
+                                        focus:ring-[#151515]"
                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'year_built_min')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Min</option>
@@ -374,7 +374,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <div className="flex-2">
                                         <select className="border mls-input mls-select border-gray-300 
                                         rounded px-3 py-2 focus:outline-none focus:ring-2 
-                                        focus:ring-[#EDB75E]"
+                                        focus:ring-[#151515]"
                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'year_built_max')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
@@ -393,7 +393,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                             placeholder="10000"
                                             style={{ maxWidth: "50%" }}
                                             onChange={(e) => handleSearch(e.target.value, 'max_annual_tax')}
-                                            className="border mls-input  border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#EDB75E]" />
+                                            className="border mls-input  border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]" />
 
                                     </div>
 

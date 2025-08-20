@@ -4,16 +4,18 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 import Image from "next/image";
-
+import { IoBedOutline } from "react-icons/io5";
+import { PiBathtub } from "react-icons/pi";
+import { TbRulerMeasure2 } from "react-icons/tb";
 interface PropertyCardProps {
     item: any;
     handleModal: () => void
-    postWishlistMutation:(data: any) => void;
+    postWishlistMutation: (data: any) => void;
     removeWishlistMutation?: (id: string) => void;
 
 }
 
-export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeWishlistMutation }: PropertyCardProps) => {
+export const MlsPropertyCard = ({ item, handleModal, postWishlistMutation, removeWishlistMutation }: PropertyCardProps) => {
     const queryClient = useQueryClient();
 
     // const postWishlistMutation = useMutation({
@@ -37,7 +39,7 @@ export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeW
             handleModal();
             return;
         }
-        
+
         const data = {
             listing_id: item.mls_listingid,
             listing_key: item.mls_listingkey,
@@ -45,7 +47,7 @@ export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeW
             user_id: sessionStorage.getItem("customer_id"),
             ListAgentMlsId: "NWM1307293"
         };
-        
+
         try {
             await postWishlistMutation(data);
             // The mutation's onSuccess will handle the query invalidation
@@ -53,7 +55,7 @@ export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeW
             console.error("Error adding to wishlist:", error);
         }
     }
-     const removeFromWishlist = (id: string) => {
+    const removeFromWishlist = (id: string) => {
         const token = sessionStorage.getItem("access_token");
         console.log(token)
         if (token == null) {
@@ -82,15 +84,26 @@ export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeW
             </div>
             <div className="mls-property-info">
                 <div className="flex flex-wrap -mx-4">
-                    <div className="w-full sm:w-7/12 px-4">
+                    <div className="w-full sm:w-4/12 px-4 ">
                         <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
                     </div>
-                    <div className="w-full sm:w-5/12 px-4 items-end-safe  mls-span">
-                        <span>{item.beds} Bed</span>
-                        <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
-                        <span>{item.baths} Bath</span>
-                        <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
-                        <span>{item.square_footage} Sq Ft</span>
+                    <div className="w-full sm:w-7/12 px-4 items-end-safe  mls-span flex">
+                        <span className="flex">{item.beds} Beds
+                            <IoBedOutline
+                                className="mt-4 ml-4"
+                                color={'#edb75e'} /></span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span className="flex">{item.baths} Baths
+                            <PiBathtub
+                                className="mt-4 ml-4"
+                                color={'#edb75e'} />
+                        </span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span className="flex">{item.square_footage} SqFt
+                             <TbRulerMeasure2
+                                className="mt-4 ml-4"
+                                color={'#edb75e'} />
+                        </span>
                     </div>
                 </div>
 
@@ -102,10 +115,10 @@ export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeW
                         fill="none">
                         <path
                             d="M28.0215 31.4024C32.045 31.4024 35.3067 28.1407 35.3067 24.1172C35.3067 20.0937 32.045 16.832 28.0215 16.832C23.998 16.832 20.7363 20.0937 20.7363 24.1172C20.7363 28.1407 23.998 31.4024 28.0215 31.4024Z"
-                            stroke="#EDB75E" strokeWidth="3.5" />
+                            stroke="#151515" strokeWidth="3.5" />
                         <path
                             d="M8.45355 19.869C13.0535 -0.352101 43.0116 -0.32875 47.5882 19.8923C50.2734 31.7541 42.8948 41.7947 36.4269 48.0058C31.7335 52.5357 24.3082 52.5357 19.5915 48.0058C13.1469 41.7947 5.7683 31.7308 8.45355 19.869Z"
-                            stroke="#EDB75E" strokeWidth="3.5" />
+                            stroke="#151515" strokeWidth="3.5" />
                     </svg> */}
                     <span>{item.address}</span>
                 </div>
@@ -113,10 +126,10 @@ export const MlsPropertyCard = ({ item, handleModal,postWishlistMutation,removeW
             </div>
             <div className="flex items-center justify-between mb5 w-full padding2">
                 <span className="listed-bold-span">Listed With</span>
-                <button onClick={item.is_wishlisted ?() => removeFromWishlist(item.wishlist_id) :() => handleAddWishlist(item)}>
+                <button onClick={item.is_wishlisted ? () => removeFromWishlist(item.wishlist_id) : () => handleAddWishlist(item)}>
                     {item.is_wishlisted ?
-                        <IoMdHeart size={24} color="#EDB75E" /> :
-                        <IoIosHeartEmpty size={24} color="#EDB75E" />
+                        <IoMdHeart size={24} color="#edb75e" /> :
+                        <IoIosHeartEmpty size={24} color="#edb75e" />
                     }
                 </button>
             </div>

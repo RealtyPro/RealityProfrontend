@@ -73,8 +73,8 @@ export default function HomePage() {
                                     <p className="advisor-title">Trusted Agent</p>
                                     <p className="advisor-desc">Lincy Mathew is a dependable and accomplished real estate professional serving the greater Seattle area. She has called Redmond home for over 20 years, giving her a deep understanding of the local market and community.
 
-Lincy’s clients are her top priority, and she is committed to walking with them every step of the way—from the initial consultation to closing. Her approachable personality, positive outlook, and cheerful demeanor make connecting with her effortless, fostering trust and collaboration.
-</p>
+                                        Lincy’s clients are her top priority, and she is committed to walking with them every step of the way—from the initial consultation to closing. Her approachable personality, positive outlook, and cheerful demeanor make connecting with her effortless, fostering trust and collaboration.
+                                    </p>
                                     <button className="btn-primary">Send Inquire</button>
                                 </div>
                             </div>

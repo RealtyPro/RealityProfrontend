@@ -1,5 +1,6 @@
 "use client"
 import { SingleBlogBanner } from "@/component/blog/SingleBlogBanner"
+import { SingleBlogContent } from "@/component/blog/SingleBlogContent";
 import { Footer } from "@/component/sharable/Footer";
 import { Header } from "@/component/sharable/Header";
 import { NewsLetter } from "@/component/sharable/NewsLetter";
@@ -15,13 +16,14 @@ const SingleBlog = () => {
     const { data: blogData, isLoading, error } = useSingleBlog(blogId ?? "");
     useEffect(() => {
         if (blogData?.data) {
-            console.log("blogData.data",blogData.data)
+            console.log("blogData.data", blogData.data)
             setBlog(blogData.data);
         }
     }, [blogData, isLoading]);
     return (
         <>
-         <div className="single-blog-banner" style={{ backgroundImage: `url(${blog?.image || '/images/home-worth-image.png'})` }}>
+            <div className=""
+                style={{ backgroundImage: `url(${blog?.image || '/images/home-worth-image.png'})` }}>
                 <Header activeHeader={"blog"} />
 
                 {/* <header className="header">
@@ -69,11 +71,12 @@ const SingleBlog = () => {
                         </div>
                     </div>
                 </header> */}
-<SingleBlogBanner  blog={blog}/>
+                <SingleBlogBanner blog={blog} />
+                <SingleBlogContent blog={blog} />
                 <NewsLetter />
                 <Footer />
             </div>
-            
+
         </>
     )
 }

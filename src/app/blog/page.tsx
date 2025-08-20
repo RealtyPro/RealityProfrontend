@@ -61,7 +61,7 @@ export default function BlogPage() {
                     <Header />
         <Header /> */}
 
-            <section className="hero">
+            <section className="hero-neighborhood">
                 <div className="hero-overlay"></div>
                 <div className="container">
                     <div className="hero-content">

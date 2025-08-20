@@ -38,33 +38,43 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
         }
     }, [neighborListDatas, isLoading, error]);
     return (
-        <div className="flex flex-1 justify-between items-center p-4 bg-white shadow rounded mls-searchmenu container mx-auto">
-            <div className="flex mls-searchmenu items-center gap-4 bg-white p-4 rounded shadow container mx-auto flex items-center gap-4">
+        <div className="w-full p-4 bg-white shadow rounded mls-searchmenu mrgn30 overflow-x-auto">
+            <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4 rounded shadow w-full">
                 {/* Search Box */}
 
                 <div className="relative flex-1">
                     {/* Property Type Dropdown */}
-                    <select style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="mls-listing-option-list px-3 py-2 focus:outline-none hover:outline-none active:outline-none focus:ring-2 focus:ring-[#EDB75E]">
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="" className="bg-black text-white">All Listing</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="house">House</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="apartment">Apartment</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="condo">Condo</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="townhouse">Townhouse</option>
+                    <select
+                        className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] text-white "
+                        style={{ backgroundColor: '#000000', color: '#ffffff' }}
+                        value={searchFilters.property_type}
+                        onChange={(e) => handleSearch(e.target.value, 'property_type')}
+                    >
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="" className="bg-black text-white">All Listing</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="house">House</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="apartment">Apartment</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="condo">Condo</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="townhouse">Townhouse</option>
                     </select>
+                    {/* Custom Arrow */}
+                    {/* <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">▼</span> */}
                 </div>
                 <div className="relative flex-1">
                     {/* Beds Dropdown */}
                     <select
-                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="px-3 py-2 mls-listing-option-list focus:outline-none hover:outline-none active:outline-none focus:ring-2 focus:ring-[#EDB75E]"
+                        className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] text-white"
+                        style={{ backgroundColor: '#000000', color: '#ffffff' }}
                         value={searchFilters.mls_city}
                         onChange={(e) => handleSearch(e.target.value, 'mls_city')}>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">Location</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="">Location</option>
                         {neighborhood.map((item) => (
                             <option key={item.id} value={item.name}
-                                style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} >{item.name}</option>
+                                style={{ backgroundColor: '#000000', color: '#ffffff' }} >{item.name}</option>
                         ))}
 
                     </select>
+                    {/* Custom Arrow */}
+                    {/* <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">▼</span> */}
                 </div>
                 {/* <div className="relative flex-2">  </div> */}
                 <div className="relative flex-1">
@@ -75,8 +85,8 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
                             <input type="checkbox" className="sr-only peer" defaultChecked />
                             <div className="w-11 h-6 bg-black border border-[#313131] 
                             rounded-full peer-checked:bg-black transition-colors duration-300 
-                            focus:ring-2 focus:ring-[#EDB75E]"></div>
-                            <div className="absolute left-0.5 top-0.5 bg-[#EDB75E] w-5 h-5 
+                            focus:ring-2 focus:ring-[#151515]"></div>
+                            <div className="absolute left-0.5 top-0.5 bg-[#d4a053] w-5 h-5 
                             rounded-full transition-transform duration-300
                              peer-checked:translate-x-5"></div>
                         </label>
@@ -86,20 +96,24 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
 
                 <div className="relative flex-1">
                     {/* Beds Dropdown */}
-                    <select style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} className="px-3 py-2 mls-listing-option-list focus:outline-none hover:outline-none active:outline-none focus:ring-2 focus:ring-[#EDB75E]" >
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">Sort by Newest</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="1">1+</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="2">2+</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="3">3+</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="4">4+</option>
-                        <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="5">5+</option>
+                    <select
+                        className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]  text-white "
+                        style={{ backgroundColor: '#000000', color: '#ffffff' }} >
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="">Sort by Newest</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="1">1+</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="2">2+</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="3">3+</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="4">4+</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="5">5+</option>
                     </select>
+                    {/* Custom Arrow */}
+                    {/* <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">▼</span> */}
                 </div>
 
 
 
                 <div className="relative flex-1 flex flex-direction-row justify-between 
-                items-center gap-1">
+                items-center mrgn10">
                     {/* Save Search Button */}
 
                     <button className="mls-listing-option-list mls-icon-pdding"

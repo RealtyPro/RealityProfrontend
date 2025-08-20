@@ -5,6 +5,7 @@
 // };
 
 // export default nextConfig;
+
 /** @type {import('next').NextConfig} */
 const nextConfig: import('next').NextConfig = {
   output: 'standalone',

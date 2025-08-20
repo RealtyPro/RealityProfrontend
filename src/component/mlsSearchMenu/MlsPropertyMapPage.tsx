@@ -20,8 +20,7 @@ export const MlsPropertyMapPage = ({ properties, handleModal, postWishlistMutati
         <div className="min-h-screen flex items-center justify-center bg-black-100 p-5 marginTop padding2">
             <div className="w-full  grid grid-cols-12 md:grid-cols-12 gap-2  p-5">
                 {/* Left Column */}
-                <div className="col-span-12 md:col-span-7 bg-black-100 p-4">
-                    {/* className="bg-black rounded-lg shadow-lg p-2 col-span-1"> */}
+                <div className="col-span-12 md:col-span-7 bg-black-100 p-4 properlistinmap">
                     <div className="space-y-1  ">
                         <div className="properties-grid">
                             {properties.map((item: any) => (

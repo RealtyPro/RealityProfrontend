@@ -54,9 +54,9 @@ export const MlsMapModalCard = ({ item }: PropertyCardProps) => {
                     </div>
                     <div className="w-full sm:w-5/12 px-4 items-end-safe  mls-span">
                         <span>{item.beds} Bed</span>
-                        <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                        <span>&nbsp;&nbsp;</span>
                         <span>{item.baths} Bath</span>
-                        <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                        <span>&nbsp;&nbsp;</span>
                         <span>{item.square_footage} Sq Ft</span>
                     </div>
                 </div>
@@ -69,10 +69,10 @@ export const MlsMapModalCard = ({ item }: PropertyCardProps) => {
                         fill="none">
                         <path
                             d="M28.0215 31.4024C32.045 31.4024 35.3067 28.1407 35.3067 24.1172C35.3067 20.0937 32.045 16.832 28.0215 16.832C23.998 16.832 20.7363 20.0937 20.7363 24.1172C20.7363 28.1407 23.998 31.4024 28.0215 31.4024Z"
-                            stroke="#EDB75E" strokeWidth="3.5" />
+                            stroke="#151515" strokeWidth="3.5" />
                         <path
                             d="M8.45355 19.869C13.0535 -0.352101 43.0116 -0.32875 47.5882 19.8923C50.2734 31.7541 42.8948 41.7947 36.4269 48.0058C31.7335 52.5357 24.3082 52.5357 19.5915 48.0058C13.1469 41.7947 5.7683 31.7308 8.45355 19.869Z"
-                            stroke="#EDB75E" strokeWidth="3.5" />
+                            stroke="#151515" strokeWidth="3.5" />
                     </svg> */}
                     <span>{item.address}</span>
                 </div>
@@ -82,8 +82,8 @@ export const MlsMapModalCard = ({ item }: PropertyCardProps) => {
                 <span className="listed-bold-span">Listed With</span>
                 <button >
                     {item.is_wishlisted ?
-                        <IoMdHeart size={24} color="#EDB75E" /> :
-                        <IoIosHeartEmpty size={24} color="#EDB75E" />
+                        <IoMdHeart size={24} color="#151515" /> :
+                        <IoIosHeartEmpty size={24} color="#151515" />
                     }
                 </button>
             </div> */}

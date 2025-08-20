@@ -51,14 +51,14 @@ export const SinglePropertyDeatils = ({ property: prop }: SinglePropertyDetailsP
                     <div className="flex-1">
                         {/* Status Tag & Share */}
                         <div className="flex items-center gap-4 mb-4 justify-between">
-                            <span className="items-start justify-start-safe bg-[#EDB75E] text-black font-medium px-5 py-2 rounded-full text-sm padding2">For Sale</span>
+                            <span className="items-start justify-start-safe bg-[#151515] text-black font-medium px-5 py-2 rounded-full text-sm padding2">For Sale</span>
                             <div className="flex items-center gap-3">
                                 <button className=" w-10 h-10 bg-[#171717] rounded-full flex items-center justify-center">
 
-                                    <RiShareForwardLine size={24} color={"#EDB75E"} />
+                                    <RiShareForwardLine size={24} color={"#151515"} />
                                 </button>
                                 <button className=" w-10 h-10 bg-[#171717] rounded-full flex items-center justify-center">
-                                    <CgMoreVertical size={24} color={"#EDB75E"} />
+                                    <CgMoreVertical size={24} color={"#151515"} />
                                 </button>
                             </div>
 
