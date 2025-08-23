@@ -142,9 +142,10 @@ export default function LoginModal({ isOpen, onClose, onSuccess, onOpenRegistrat
             <div>
               <label className="mt1 block mb-2 text-white font-medium">Email Address</label>
               <input
+
                 type="email"
                 name="email"
-                className="bg-clr mt1 padding2 w-full bg-[#171717] border border-[#4E4E4E] rounded-full px-4 py-3 text-white placeholder-[#ADADAD] focus:outline-none focus:border-[#EDB75E] transition-colors [&:-webkit-autofill]:bg-[#171717] [&:-webkit-autofill]:text-white [&:-webkit-autofill]:shadow-[0_0_0_30px_#171717_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:white]"
+                className="bg-clr mt1 login-input-padding w-full bg-[#171717] border border-[#4E4E4E] rounded-full px-4 py-3 text-white placeholder-[#ADADAD] focus:outline-none focus:border-[#EDB75E] transition-colors [&:-webkit-autofill]:bg-[#171717] [&:-webkit-autofill]:text-white [&:-webkit-autofill]:shadow-[0_0_0_30px_#171717_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:white]"
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="Enter your email"
@@ -158,7 +159,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess, onOpenRegistrat
               <input
                 type="password"
                 name="password"
-                className="bg-clr mt1 padding2 w-full bg-[#171717] border border-[#4E4E4E] rounded-full px-4 py-3 text-white placeholder-[#ADADAD] focus:outline-none focus:border-[#EDB75E] transition-colors [&:-webkit-autofill]:bg-[#171717] [&:-webkit-autofill]:text-white [&:-webkit-autofill]:shadow-[0_0_0_30px_#171717_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:white]"
+                className="bg-clr mt1 login-input-padding w-full bg-[#171717] border border-[#4E4E4E] rounded-full px-4 py-3 text-white placeholder-[#ADADAD] focus:outline-none focus:border-[#EDB75E] transition-colors [&:-webkit-autofill]:bg-[#171717] [&:-webkit-autofill]:text-white [&:-webkit-autofill]:shadow-[0_0_0_30px_#171717_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:white]"
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Enter your password"
@@ -172,7 +173,7 @@ export default function LoginModal({ isOpen, onClose, onSuccess, onOpenRegistrat
                   type="checkbox"
                   className="w-4 h-4 text-[#EDB75E] bg-[#171717] border-[#4E4E4E] rounded focus:ring-[#EDB75E] focus:ring-2"
                 />
-                <span className="ml-2 text-[#ADADAD] text-sm">Remember me</span>
+                <span className="ml-5 text-[#ADADAD] text-sm">Remember me</span>
               </label>
               <a
                 href="/forgot-password"

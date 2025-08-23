@@ -43,7 +43,7 @@ const NewsArticleList = () => {
                     <div>No News articles found.</div>
                 )}
             </div>
-            <div className="section-cta">
+            <div className="section-cta mb5 ">
                 <button
                     onClick={() => handleBlog()}
                     className="btn-secondary">See All News & Articles</button>

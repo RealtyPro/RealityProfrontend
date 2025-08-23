@@ -13,6 +13,8 @@ interface MlsListingOptionsProps {
     openPropertyGrid?: boolean;
     handleSearch: (value: any, key: keyof SearchFilters) => void;
     searchFilters: SearchFilters;
+    showMap:boolean;
+    handleShowmapDongle:()=>void;
 }
 type Neighborhood = {
     id: number;
@@ -21,7 +23,7 @@ type Neighborhood = {
 
 export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid,
     handleOpenPropertyGrid, openMapPropertyGrid, openMapGrid, openPropertyGrid, handleSearch
-    , searchFilters }: MlsListingOptionsProps) => {
+    , searchFilters,showMap,handleShowmapDongle }: MlsListingOptionsProps) => {
     const [neighborhood, setNeighborhood] = useState<Neighborhood[]>([]);
     const loc = typeof window !== "undefined" ? sessionStorage.getItem("prop_location") ?? "" : "";
 
@@ -39,7 +41,8 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
     }, [neighborListDatas, isLoading, error]);
     return (
         <div className="w-full p-4 bg-white shadow rounded mls-searchmenu mrgn30 overflow-x-auto">
-            <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4 rounded shadow w-full">
+            <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4 rounded 
+            container shadow w-full">
                 {/* Search Box */}
 
                 <div className="relative flex-1">
@@ -82,7 +85,9 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
                         <span className="text-sm mr-5">Show Map</span>
 
                         <label className="relative inline-block w-11 h-6">
-                            <input type="checkbox" className="sr-only peer" defaultChecked />
+                            <input type="checkbox" className="sr-only peer"  
+                            checked={showMap}
+                            onChange={handleShowmapDongle}/>
                             <div className="w-11 h-6 bg-black border border-[#313131] 
                             rounded-full peer-checked:bg-black transition-colors duration-300 
                             focus:ring-2 focus:ring-[#151515]"></div>

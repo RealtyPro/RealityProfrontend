@@ -7,6 +7,11 @@ import { Header } from "@/component/sharable/Header";
 import PropertyHomeList from "@/main-pages/home/PropertyHomeList";
 import NeighborhoodHomeList from "@/main-pages/home/NeighborhoodHomeList";
 import SearchContainer from "@/main-pages/home/SearchContainer";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import { IoIosArrowRoundForward } from "react-icons/io";
+import { NewsLetter } from "@/component/sharable/NewsLetter";
+
+
 export default function HomePage() {
 
     return (
@@ -63,10 +68,10 @@ export default function HomePage() {
                     </section>
 
 
-                    <div className="about-content">
+                    <div className="about-content abouthome">
 
                         <div className="about-image">
-                            <img src="/images/lincy-pic.jpg" alt="Trusted Global Advisor" />
+                            <img src="/images/lincy-home-img.jpeg" alt="Trusted Global Advisor" />
                             <div className="advisor-card">
                                 <div className="advisor-info">
                                     <span className="third-header-text">Lincy Mathew</span>
@@ -140,33 +145,26 @@ export default function HomePage() {
                 </div>
             </section> */}
             {/* <!-- News & Articles Section --> */}
-            <section className="news">
+            <section className="news-home">
                 <div className="container">
-                    <div className="section-header">
-                        <h2>Browse our News <br />and Article<br />
-                            <span>Top priority, and she is <br />committed to
+                    <div className="section-header ">
+                        <div className="flex column">
+                            <div className="second-header-text">Browse our News <br />and Article<br /></div>
+                            <p >Top priority, and she is <br />committed to
                                 walking with
-                                them</span>
-                        </h2>
+                                them</p>
+                        </div>
+
 
                         <div className="nav-arrows">
                             <button className="nav-arrow">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="43" viewBox="0 0 44 43" fill="none">
-                                    <path d="M17.752 10.7031L7.08852 21.3666L17.752 32.03" stroke="#EDB75E"
-                                        strokeWidth="3.37295" strokeMiterlimit="10" strokeLinecap="round"
-                                        strokeLinejoin="round" />
-                                    <path d="M36.9531 21.3633H7.38714" stroke="#EDB75E" strokeWidth="3.37295"
-                                        strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+
+                                <IoIosArrowRoundBack color="#EDB75E" size={40} />
                             </button>
                             <button className="nav-arrow nav-arrow-bgbutton">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43 43" fill="none">
-                                    <path d="M25.7969 10.6992L36.4603 21.3627L25.7969 32.0261" stroke="black"
-                                        strokeWidth="3.37295" strokeMiterlimit="10" strokeLinecap="round"
-                                        strokeLinejoin="round" />
-                                    <path d="M6.59766 21.3633H36.1636" stroke="black" strokeWidth="3.37295"
-                                        strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
+
+                                <IoIosArrowRoundForward color="white" size={40} />
+
                             </button>
                         </div>
                     </div>
@@ -215,16 +213,18 @@ export default function HomePage() {
                 </div>
             </section>
             {/* <!-- Newsletter Section --> */}
-            <section className="newsletter" style={{ backgroundImage: "url('images/footer.png')" }}>
+            {/* <section className="newsletter" style={{ backgroundImage: "url('images/footer.png')" }}>
                 <div className="newsletter-overlay"></div>
                 <div className="container">
                     <div className="newsletter-content">
                         <h2>Subscribe our newsletter</h2>
                         <p>Top priority, and she is committed to walking with them consistently walking.</p>
                         <form className="newsletter-form">
-                            <div className="form-group">
-                                <input type="email" placeholder="Email Address" required />
-                                <button type="submit" className="btn-subscribe">
+                            <div className="flex justify-space-between mt-4 text-white">
+                                <input type="email" placeholder="Email Address" required
+                                    className="bg-white text-black  flex-grow p-3 marginRight rounded-[10px] newsletter-email "
+                                />
+                                <button type="submit" className="btn-subscribe marginLeft-10 rounded-[10px]">
                                     Subscribe
                                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="16" viewBox="0 0 21 16"
                                         fill="none">
@@ -233,11 +233,13 @@ export default function HomePage() {
                                             fill="black" />
                                     </svg>
                                 </button>
+
                             </div>
                         </form>
                     </div>
                 </div>
-            </section>
+            </section> */}
+            <NewsLetter />
 
             {/* <!-- Footer --> */}
             <Footer />

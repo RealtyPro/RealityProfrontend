@@ -21,7 +21,7 @@ const NeighborhoodList = () => {
     return (
         <>
 
-            <div className="neighborhoods-grid">
+            <div className="neighborhoods-grid container">
                 {neighborhood.length ? (
                     <>
                         {neighborhood.map((item) => (

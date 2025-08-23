@@ -22,8 +22,10 @@ const SingleBlog = () => {
     }, [blogData, isLoading]);
     return (
         <>
-            <div className=""
-                style={{ backgroundImage: `url(${blog?.image || '/images/home-worth-image.png'})` }}>
+            <div className="container"
+                style={{ backgroundImage: `url(${blog?.image || '/images/home-worth-image.png'})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',}}>
                 <Header activeHeader={"blog"} />
 
                 {/* <header className="header">
@@ -71,8 +73,11 @@ const SingleBlog = () => {
                         </div>
                     </div>
                 </header> */}
-                <SingleBlogBanner blog={blog} />
-                <SingleBlogContent blog={blog} />
+                <div className=" mx-auto mt-20 mb-10">
+                    <SingleBlogBanner blog={blog} />
+                    <SingleBlogContent blog={blog} />
+                </div>
+
                 <NewsLetter />
                 <Footer />
             </div>

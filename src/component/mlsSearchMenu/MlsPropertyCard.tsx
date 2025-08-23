@@ -88,21 +88,27 @@ export const MlsPropertyCard = ({ item, handleModal, postWishlistMutation, remov
                         <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
                     </div>
                     <div className="w-full sm:w-7/12 px-4 items-end-safe  mls-span flex">
-                        <span className="flex">{item.beds} Beds
+                        <span className="flex">
                             <IoBedOutline
-                                className="mt-4 ml-4"
-                                color={'#edb75e'} /></span>
-                        <span>&nbsp;&nbsp;</span>
-                        <span className="flex">{item.baths} Baths
-                            <PiBathtub
-                                className="mt-4 ml-4"
+                                className="mt-4 ml-4 mr-4"
                                 color={'#edb75e'} />
+                            {item.beds} Beds
                         </span>
                         <span>&nbsp;&nbsp;</span>
-                        <span className="flex">{item.square_footage} SqFt
-                             <TbRulerMeasure2
-                                className="mt-4 ml-4"
+                        <span className="flex">
+                            <PiBathtub
+                                className="mt-4 mr-4"
                                 color={'#edb75e'} />
+                            {item.baths} Baths
+
+                        </span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span className="flex">
+                            <TbRulerMeasure2
+                                className="mt-4 mr-4"
+                                color={'#edb75e'} />
+                            {item.square_footage} SqFt
+
                         </span>
                     </div>
                 </div>

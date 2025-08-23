@@ -75,11 +75,11 @@ p {
 .btn-primary {
     background-color: #000000;
     color: #edb75e;
-    border: 2px solid #EDB75E;
-    padding: 5px 9px;
-    border-radius: 15px;
-    font-size: 15px;
-    font-weight: 600;
+    border: 1px solid #EDB75E;
+    padding: 7px 25px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -100,11 +100,11 @@ p {
 .btn-secondary {
     background-color: #000000;
     color: #EDB75E;
-    border: 2px solid #EDB75E;
+    border: 1px solid #EDB75E;
     padding: 10px 30px;
-    border-radius: 15px;
-    font-size: 19px;
-    font-weight: 700;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -427,7 +427,7 @@ p {
 }
 
 .hero-text {
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
 
 .hero-text h1 {
@@ -445,10 +445,9 @@ p {
 /* Search Form */
 .search-form {
     background-color: #ffffff;
-    border-radius: 25px;
-    padding: 18px 33px;
-    /* max-width: 1282px; */
-    width: 80%;
+    border-radius: 10px;
+    padding: 14px 12px 15px 26px;
+    width: 76%;
     margin: 0 auto;
 }
 
@@ -457,11 +456,11 @@ p {
 }
 
 .search-tab {
-    background-color: #EDB75E;
+ background-color: #EDB75E;
     color: #000000;
     border: none;
-    padding: 19px 10px;
-    border-radius: 19px;
+    padding: 20px 30px 18px 30px;
+    border-radius: 10px;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: -1%;
@@ -594,7 +593,7 @@ p {
 
 .search-fields {
     display: flex;
-    gap: 134px;
+    gap: 95px;
     align-items: end;
 }
 
@@ -608,7 +607,7 @@ p {
     font-size: 15px;
     font-weight: 700;
     letter-spacing: -3%;
-    margin-bottom: 11px;
+    margin-bottom: 0px;
 }
 
 .select-field {
@@ -666,13 +665,12 @@ p {
 
 .advisor-card {
     position: absolute;
-    bottom: -100px;
-    right: -100px;
+    bottom: -40px;
+    right: 9px;
     background-color: transparent;
     backdrop-filter: blur(10px);
     border-radius: 15px;
-    padding: 60px;
-    max-width: 665px;
+    max-width: 648px;
     box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
 }
 
@@ -692,9 +690,9 @@ p {
 .advisor-title {
     font-size: 20px;
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 0;
     letter-spacing: -3%;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 
 .advisor-desc {
@@ -703,7 +701,7 @@ p {
     letter-spacing: -3%;
     padding-right: 50px;
     text-align: justify;
-    margin-bottom: 60px;
+    margin-bottom: 27px;
 }
 
 .progress-dots {
@@ -728,16 +726,17 @@ p {
 
 /* Home Worth Section */
 .home-worth {
-    padding: 200px 0;
-    padding-left: 200px;
-    margin-left: 150px;
-    padding-right: 200px;
-    margin-right: 150px;
+    padding: 250px 0;
+    padding-left: 0px;
+    margin-left: 87px;
+    padding-right: 250px;
+    padding-bottom: 26px;
+    margin-right: 69px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    border-radius: 35px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
@@ -756,7 +755,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 532px;
+    max-width: 540px;
     margin: 0 auto;
 }
 
@@ -770,7 +769,7 @@ p {
 
 /* Properties Section */
 .properties {
-    padding: 200px 0;
+    padding: 100px 0;
     background-color: #171717;
 }
 
@@ -779,7 +778,7 @@ p {
     margin-bottom: 100px;
     margin-left: 79px;
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -794,14 +793,14 @@ p {
     font-style: normal;
     font-weight: 400;
     line-height: 94px;
-    /* 117.5% */
     letter-spacing: -2.4px;
 }
 
 .section-header p {
-    max-width: 600px;
+       max-width: 600px;
     font-size: 18px !important;
     margin-right: 40px;
+    margin-top: 28px;
 }
 
 .nav-arrows {
@@ -840,10 +839,10 @@ p {
 .filter-btn {
     background-color: transparent;
     color: #EDB75E;
-    border: 2px solid #EDB75E;
-    padding: 10px 24px;
-    border-radius: 15px;
-    font-size: 18px;
+    border: 1px solid #EDB75E;
+    padding: 4px 28px;
+    border-radius: 10px;
+    font-size: 15px;
     font-weight: 400;
     letter-spacing: -3%;
     cursor: pointer;
@@ -853,7 +852,7 @@ p {
 .filter-btn.active {
     background-color: #EDB75E;
     color: #000000;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .filter-btn:hover {
@@ -865,7 +864,7 @@ p {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-        padding-right: 20px;
+    padding-right: 20px;
     margin-bottom: 100px;
 }
 .properties-grid-home {
@@ -916,8 +915,8 @@ p {
 
 .property-card {
     background-color: #171717;
-    border: 2px solid #4F4F4F;
-    border-radius: 5px;
+    border: 1px solid #4F4F4F;
+    border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
 }
@@ -1094,7 +1093,7 @@ p {
 }
 
 .mls-property-info {
-    padding: 3px;
+    padding: 10px 10px 6px 8px;
     min-height: 20%;
 }
 
@@ -1170,7 +1169,7 @@ p {
 .neighborhoods-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 15px;
     margin-bottom: 100px;
 }
 
@@ -1187,7 +1186,7 @@ p {
 
 .neighborhood-card {
     position: relative;
-    height: 300px;
+    height: 500px;
     border-radius: 25px;
     overflow: hidden;
     cursor: pointer;
@@ -1442,17 +1441,17 @@ p {
     line-height: 1.54;
     letter-spacing: -1%;
     display: block;
-    margin-bottom: 28px;
+    margin-bottom: 15px;
 }
 
 .read-more-btn {
-    background-color: transparent;
+  background-color: transparent;
     color: #EDB75E;
     border: 1px solid #EDB75E;
-    padding: 5px 10px;
-    border-radius: 10px;
+    padding: 5px 13px;
+    border-radius: 7px;
     font-size: 12px;
-    font-size: 20px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: -3%;
     cursor: pointer;
@@ -1504,17 +1503,17 @@ p {
 }
 
 .newsletter-content p {
-    margin-bottom: 85px;
+    margin-bottom: 35px;
 }
 
 .newsletter-form {
-    max-width: 930px;
+    max-width: 60%;
 }
 
 .form-group {
     display: flex;
     background-color: #ffffff;
-    border-radius: 15px;
+    border-radius:8px;
     overflow: hidden;
 }
 
@@ -2278,7 +2277,20 @@ p {
 }
 .marginLeft_10 {
     margin: -10px;
-    ;
+    
+}
+.newsletter-email{
+    padding:10px 20px !important;
+}
+.marginLeft-15 {
+    margin-left: 15px;
+    
+}
+.login-input-padding{
+    padding: 10px 15px 10px 15px !important;
+}
+.search-padding{
+    padding: 5px 0px 5px 3px !important;
 }
 .mt-4 {
     margin-top: 4px !important;
@@ -2287,7 +2299,7 @@ p {
     margin-left: 4px !important;
 }
 .mr-4 {
-    margin-right: 4px !important;
+    margin-right: 2px !important;
 }
 .mls-page {
     background-size: cover;
@@ -3067,13 +3079,13 @@ p {
 .social-links {
     margin-top: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     gap: 15px;
 }
 
 .social-links img {
-    width: 28px;
-    height: 28px;
+    width: 15px;
+    height: 18px;
 }
 
 @media(max-width: 768px) {

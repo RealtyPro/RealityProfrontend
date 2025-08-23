@@ -4,7 +4,9 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
+.abouthome{
+  margin-top: 50px;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -17,6 +19,9 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+.marginRight{
+  margin-right:10px;
 }
 .minwidth300 {
     min-width: 300px;

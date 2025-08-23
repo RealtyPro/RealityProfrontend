@@ -28,6 +28,7 @@ const MlsSerchHomePage = () => {
     const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [showMap,setShowMap]=useState(true);
     const [searchFilters, setSearchFilters] = useState(() => {
         // read once during initial render (browser-side only)
         const type = typeof window !== "undefined" ? sessionStorage.getItem("prop_type") ?? "" : "";
@@ -157,6 +158,18 @@ const MlsSerchHomePage = () => {
 
 
     }, [searchFilters, currentPage, queryClient]);
+    useEffect(() => {
+        if(showMap){
+            setOpenMapPropertyGrid(true);
+            setOpenMapGrid(false);
+            setOpenPropertyGrid(false);
+        }
+        else{
+            setOpenPropertyGrid(true);
+            setOpenMapGrid(false);
+            setOpenMapPropertyGrid(false);
+        }
+    },[showMap]);
     const removeWishlistMutation = useMutation({
         mutationFn: (id: string) => removeWishlistItem(id),
 
@@ -247,6 +260,10 @@ const MlsSerchHomePage = () => {
         postSaveSeachMutation.mutate(data);
 
     }
+    const handleShowmapDongle = () => {
+        setShowMap(!showMap);
+
+    }
     return (
         <>
             <ToastContainer
@@ -283,7 +300,7 @@ const MlsSerchHomePage = () => {
                 />
 
             </section>
-            <div>
+            <section className="">
                 <MlsListingOptions
                     handleOpenMapPropertyGrid={() => handleOpenMapPropertyGrid(true)}
                     openMapPropertyGrid={openMapPropertyGrid}
@@ -293,9 +310,11 @@ const MlsSerchHomePage = () => {
                     openPropertyGrid={openPropertyGrid}
                     handleSearch={handleSearch}
                     searchFilters={searchFilters}
+                    handleShowmapDongle={handleShowmapDongle}
+                    showMap={showMap}
                 />
-            </div>
-            <div >
+            </section>
+            <div className="container mx-auto">
                 {openMapPropertyGrid ?
                     <MlsPropertyMapPage
                         postWishlistMutation={(data: any) => postWishlistMutation.mutate(data)}

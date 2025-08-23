@@ -1,17 +1,19 @@
 "use client"
 import { postUserPropertyWishlist, removeWishlistItem } from "@/services/profile/ProfileServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Image from "next/image";
-import { useState } from "react";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
+import Image from "next/image";
+import { IoBedOutline } from "react-icons/io5";
+import { PiBathtub } from "react-icons/pi";
+import { TbRulerMeasure2 } from "react-icons/tb";
 interface PropertyCardProps {
     item: any; // Replace 'any' with a more specific type if available
     handleModal: () => void
     hideWishlist?: boolean; // Optional prop to hide wishlist button
 }
 
-export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardProps) => {
+export const PropertyCard = ({ item, handleModal, hideWishlist }: PropertyCardProps) => {
     const queryClient = useQueryClient();
 
     const postWishlistMutation = useMutation({
@@ -55,7 +57,7 @@ export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardPro
                 <Image
                     src={item.cover_image ? item.cover_image[0] : item.cover_photo[0]}
                     alt="Property"
-                    
+
                     width={400}
                     height={250}
                 />
@@ -73,17 +75,17 @@ export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardPro
                     </button>
                 </div> */}
             </div>
-            <div className="property-info">
+            {/* <div className="property-info">
                 {/* <h3>{item.title}</h3> */}
-                <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
-                <div className="flex justify-end-safe items-center-safe gap-2 mls-span">
-                    <span>{item.beds} Bed</span>
-                    <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
-                    <span>{item.baths} Bath</span>
-                    <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
-                    <span>{item.square_footage} Sq Ft</span>
-                </div>
-                {/* <div className="property-features">
+            {/* <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
+            <div className="flex justify-end-safe items-center-safe gap-2 mls-span">
+                <span>{item.beds} Bed</span>
+                <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                <span>{item.baths} Bath</span>
+                <span className="inline-block w-[4px] h-[4px] bg-white rounded-full"></span>
+                <span>{item.square_footage} Sq Ft</span>
+            </div> */}
+            {/* <div className="property-features">
                     <span className="feature">
                         <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
                             fill="none">
@@ -111,20 +113,12 @@ export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardPro
                         {item.baths} Bathrooms
                     </span>
                 </div> */}
-                <div className="property-location">
-                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
-                        fill="none">
-                        <path
-                            d="M28.0215 31.4024C32.045 31.4024 35.3067 28.1407 35.3067 24.1172C35.3067 20.0937 32.045 16.832 28.0215 16.832C23.998 16.832 20.7363 20.0937 20.7363 24.1172C20.7363 28.1407 23.998 31.4024 28.0215 31.4024Z"
-                            stroke="#151515" strokeWidth="3.5" />
-                        <path
-                            d="M8.45355 19.869C13.0535 -0.352101 43.0116 -0.32875 47.5882 19.8923C50.2734 31.7541 42.8948 41.7947 36.4269 48.0058C31.7335 52.5357 24.3082 52.5357 19.5915 48.0058C13.1469 41.7947 5.7683 31.7308 8.45355 19.869Z"
-                            stroke="#151515" strokeWidth="3.5" />
-                    </svg> */}
-                    <span>{item.address}</span>
-                </div>
+            {/* <div className="property-location">
+               
+                <span>{item.address}</span>
+            </div> */}
 
-            </div>
+            {/* </div>
             <div className="flex items-center justify-between mb5 w-full padding2">
                 <span className="listed-bold-span">Listed With</span>
                 {
@@ -137,7 +131,65 @@ export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardPro
                             }
                         </button>
                 }
+            </div> */}
+
+            <div className="mls-property-info">
+                <div className="flex flex-wrap -mx-4">
+                    <div className="w-full sm:w-4/12 px-4 ">
+                        <h3 className="mlscardheading">${Number(item.price).toLocaleString()}</h3>
+                    </div>
+                    <div className="w-full sm:w-8/12 px-4 items-end-safe  mls-span flex justify-end-safe">
+                        <span className="flex">
+                            <IoBedOutline
+                                className="mt-4 ml-4 mr-4"
+                                color={'#edb75e'} />
+                            {item.beds} Beds
+                        </span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span className="flex">
+                            <PiBathtub
+                                className="mt-4 mr-4"
+                                color={'#edb75e'} />
+                            {item.baths} Baths
+
+                        </span>
+                        <span>&nbsp;&nbsp;</span>
+                        <span className="flex">
+                            <TbRulerMeasure2
+                                className="mt-4 mr-4"
+                                color={'#edb75e'} />
+                            {item.square_footage} SqFt
+
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+                <div className="property-location">
+                    {/* <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57"
+                                    fill="none">
+                                    <path
+                                        d="M28.0215 31.4024C32.045 31.4024 35.3067 28.1407 35.3067 24.1172C35.3067 20.0937 32.045 16.832 28.0215 16.832C23.998 16.832 20.7363 20.0937 20.7363 24.1172C20.7363 28.1407 23.998 31.4024 28.0215 31.4024Z"
+                                        stroke="#151515" strokeWidth="3.5" />
+                                    <path
+                                        d="M8.45355 19.869C13.0535 -0.352101 43.0116 -0.32875 47.5882 19.8923C50.2734 31.7541 42.8948 41.7947 36.4269 48.0058C31.7335 52.5357 24.3082 52.5357 19.5915 48.0058C13.1469 41.7947 5.7683 31.7308 8.45355 19.869Z"
+                                        stroke="#151515" strokeWidth="3.5" />
+                                </svg> */}
+                    <span>{item.address}</span>
+                </div>
+
             </div>
+            {/* <div className="flex items-center justify-between mb5 w-full padding2">
+                <span className="listed-bold-span">Listed With</span>
+                <button onClick={item.is_wishlisted ? () => removeFromWishlist(item.wishlist_id) : () => handleAddWishlist(item)}>
+                    {item.is_wishlisted ?
+                        <IoMdHeart size={24} color="#edb75e" /> :
+                        <IoIosHeartEmpty size={24} color="#edb75e" />
+                    }
+                </button>
+            </div> */}
         </div>
 
     )

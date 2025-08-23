@@ -6,6 +6,7 @@ import FeaturedNewsList  from '@/main-pages/blog/FeaturedNewsList';
 import FeaturedArticleList  from '@/main-pages/blog/FeaturedArticleList';
 import { Footer } from '@/component/sharable/Footer';
 import { Header } from '@/component/sharable/Header';
+import { NewsLetter } from '@/component/sharable/NewsLetter';
 // import { useBlogList } from '@/services/blog/BlogQueries';
 export default function BlogPage() {
     //   const { data: blogListDatas, isLoading, error } = useBlogList();
@@ -114,7 +115,7 @@ export default function BlogPage() {
                         </div>
                     </div>
                 </div>
-                <section className="newsletter" style={{ backgroundImage: "url('images/new-blog-subscription.png')" }}>
+                {/* <section className="newsletter container" style={{ backgroundImage: "url('images/new-blog-subscription.png')" }}>
                     <div className="newsletter-overlay"></div>
                     <div className="container">
                         <div className="newsletter-content">
@@ -136,7 +137,8 @@ export default function BlogPage() {
                             </form>
                         </div>
                     </div>
-                </section>
+                </section> */}
+            <NewsLetter />
 
                 {/* <!-- Footer --> */}
                <Footer />

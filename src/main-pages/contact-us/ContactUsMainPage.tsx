@@ -156,7 +156,7 @@ export default function ContactUsMainPage() {
                 </div>
             </section>
             {/* Get In Touch Section */}
-            <section className="contact-section">
+            <section className="contact-section container ">
                 <div className="contact-grid">
                     <div className="contact-left">
                         <h2>Get In Touch</h2>

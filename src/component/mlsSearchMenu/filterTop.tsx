@@ -12,7 +12,7 @@ import { PiBathtub } from "react-icons/pi";
 import { VscSettings } from "react-icons/vsc";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { AiOutlineDollarCircle } from "react-icons/ai";
+import { BiDollar } from "react-icons/bi";
 const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopProps) => {
     const [openAllFilter, setOpenAllFilter] = useState(false);
     const [isPriceDropdownOpen, setIsPriceDropdownOpen] = useState(false);
@@ -47,7 +47,8 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
 
     return (
         <div className="w-full p-4 bg-white shadow rounded mls-searchmenu overflow-x-auto">
-            <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4  rounded shadow container mx-auto">
+            <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4  rounded
+             shadow container mx-auto">
                 {/* Search Box */}
                 <div className="relative flex flex-1 min-w-[200px]">
                     <span className="absolute inset-y-0 left-0 flex items-center pr-2 pl-3 text-gray-400">
@@ -65,7 +66,7 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 <div className="relative flex flex-1 min-w-[160px]">
                     <button
 
-                        className="no-p-r border border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
+                        className="no-p-r border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handlePropertyTypeDropdownToggle}
                     >
                         <span className="float-left"><TbBuildingEstate
@@ -109,10 +110,10 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 <div className="relative flex flex-1 min-w-[160px]">
                     
                     <button
-                        className="border border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
+                        className="border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handlePriceDropdownToggle}
                     >
-                         <span className="float-left"><AiOutlineDollarCircle
+                         <span className="float-left"><BiDollar
                          className="mt-4  mr-4"
                          size={"15px"} color={'#edb75e'} /></span>
                         {
@@ -201,7 +202,7 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 {/* Bed Dropdown */}
                 <div className="relative flex flex-1 min-w-[120px]">
                     <button
-                        className="border border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
+                        className="border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handleBedDropdownToggle}
                     ><span className="float-left"><IoBedOutline
                          className="mt-4  mr-4"
@@ -261,7 +262,7 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 {/* Bath Dropdown */}
                 <div className="relative flex flex-1 min-w-[120px]">
                     <button
-                        className="border border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
+                        className="border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handleBathDropdownToggle}
                     >
                         <span className="float-left"><PiBathtub

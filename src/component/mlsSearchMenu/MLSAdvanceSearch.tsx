@@ -1,6 +1,8 @@
 "use client";
 import { MLSAdvanceSearchProps } from "@/types/Property";
 import React, { useState } from "react";
+import { RiArrowDownSLine } from "react-icons/ri";
+
 
 const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters }: MLSAdvanceSearchProps) => {
     const [checked, setChecked] = useState(false);
@@ -248,11 +250,11 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                 <label className="block mb-2 mls-search-ctr-label">Garage</label>
                                 <div className="flex gap-2">
                                     <div className="flex-2">
-                                        <select 
-                                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
-                                        className="border mls-input mls-select border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]">
+                                        <select
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            className="border mls-input mls-select border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]">
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
-                                             value="">No Min</option>
+                                                value="">No Min</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="100000">100,000</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="200000">200,000</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="300000">300,000</option>
@@ -279,7 +281,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                             className="border mls-input mls-select border-gray-300 
                                         rounded px-3 py-2 focus:outline-none focus:ring-2 
                                         focus:ring-[#151515]"
-                                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'lot_size_min')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value=""> No Min </option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="100000">100,000</option>
@@ -294,7 +296,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <select className="border mls-input mls-select 
                                         border-gray-300 rounded px-3 py-2 focus:outline-none 
                                         focus:ring-2 focus:ring-[#151515]"
-                                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'lot_size_max')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="500000">500,000</option>
@@ -310,7 +312,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                     <select className="border mls-input mls-select 
                                     border-gray-300 rounded px-3 py-2 focus:outline-none 
                                     focus:ring-2 focus:ring-[#151515]"
-                                    style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                         onChange={(e) => handleSearch(e.target.value, 'stories')}>
                                         <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">Any</option>
                                         <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="100000">100,000</option>
@@ -328,7 +330,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <select className="border mls-input mls-select 
                                         border-gray-300 rounded px-3 py-2 focus:outline-none
                                          focus:ring-2 focus:ring-[#151515]"
-                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'square_footage_min')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Min</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="100000">100,000</option>
@@ -343,7 +345,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <select className="border mls-input mls-select border-gray-300
                                          rounded px-3 py-2 focus:outline-none focus:ring-2 
                                          focus:ring-[#151515]"
-                                         style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'square_footage_max')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="500000">500,000</option>
@@ -360,7 +362,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <select className="border mls-input mls-select border-gray-300 
                                         rounded px-3 py-2 focus:outline-none focus:ring-2 
                                         focus:ring-[#151515]"
-                                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'year_built_min')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Min</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="100000">100,000</option>
@@ -375,7 +377,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                         <select className="border mls-input mls-select border-gray-300 
                                         rounded px-3 py-2 focus:outline-none focus:ring-2 
                                         focus:ring-[#151515]"
-                                        style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
+                                            style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }}
                                             onChange={(e) => handleSearch(e.target.value, 'year_built_max')}>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="">No Max</option>
                                             <option style={{ backgroundColor: '#1c1d1d', color: '#ffffff' }} value="500000">500,000</option>
@@ -450,13 +452,13 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                         </div>
                     </div>
                     <div className="flex-1 text-left ">
-                        <div
+                        <div className="flex"
                             onClick={() => setIsAmenitiesDropdownOpen(!isAmenitiesDropdownOpen)}
                         >
-                            <label className="block mb-2 mls-search-ctr-label" style={{ marginTop: "20px" }}>
-                                Community Amenities▼
+                            <label className="block mb-2 mls-search-ctr-label" style={{ marginTop: "0px" }}>
+                                Community Amenities
                             </label>
-                        </div>
+  <span ><RiArrowDownSLine size={"25px"} style={{marginLeft:'4px'}} /></span>                        </div>
 
                         {isAmenitiesDropdownOpen && (
                             <div className="mb-4 p-4 bg-gray-100 rounded-md">
@@ -472,7 +474,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                                 checked={selectedAmenities.includes(amenity)}
                                                 onChange={() => handleAmenityChange(amenity)}
                                             />
-                                            <span className="text-sm">{amenity}</span>
+                                            <span className="text-sm paddingLeft5">{amenity}</span>
                                         </label>
                                     ))}
                                 </div>
@@ -481,11 +483,13 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                     </div>
                     <div className="flex-1 text-left">
                         <div
+                            className="flex"
                             onClick={() => setIsViewsDropdownOpen(!isViewsDropdownOpen)}
                         >
-                            <label className="block mb-2 mls-search-ctr-label" style={{ marginTop: "20px" }}>
-                                Property View▼
+                            <label className="block mb-2 mls-search-ctr-label" style={{ marginTop: "0px" }}>
+                                Property View
                             </label>
+                            <span ><RiArrowDownSLine size={"25px"} style={{marginLeft:'4px'}} /></span>
                         </div>
 
                         {isViewsDropdownOpen && (
@@ -502,7 +506,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                                 checked={selectedViews.includes(view)}
                                                 onChange={() => handleViewChange(view)}
                                             />
-                                            <span className="text-sm">{view}</span>
+                                            <span className="text-sm paddingLeft5">{view}</span>
                                         </label>
                                     ))}
                                 </div>
@@ -510,12 +514,13 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                         )}
                     </div>
                     <div className="flex-1 text-left paddingBottom2">
-                        <div
+                        <div className="flex"
                             onClick={() => setIsInteriorFeaturesDropdownOpen(!isInteriorFeaturesDropdownOpen)}
                         >
-                            <label className="block mb-2 mls-search-ctr-label" style={{ marginTop: "20px" }}>
-                                Interior Features▼
+                            <label className="block mb-2 mls-search-ctr-label" style={{ marginTop: "0px" }}>
+                                Interior Features
                             </label>
+                              <span ><RiArrowDownSLine size={"25px"} style={{marginLeft:'4px'}} /></span>
                         </div>
 
                         {isInteriorFeaturesDropdownOpen && (
@@ -532,7 +537,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
                                                 checked={selectedInteriorFeatures.includes(feature)}
                                                 onChange={() => handleInteriorFeatureChange(feature)}
                                             />
-                                            <span className="text-sm">{feature}</span>
+                                            <span className="text-sm paddingLeft5">{feature}</span>
                                         </label>
                                     ))}
                                 </div>

@@ -20,7 +20,7 @@ export const DashboardHeader = ({ activeHeader }: headerProps) => {
         mutationFn: () => postUserLogout(),
 
         onSuccess: (data) => {
-             sessionStorage.clear();
+            sessionStorage.clear();
             if (typeof window !== "undefined") {
                 sessionStorage.clear();
                 window.location.href = "/home";
@@ -42,39 +42,42 @@ export const DashboardHeader = ({ activeHeader }: headerProps) => {
                 {/* <span className="text-2xl font-bold font-serif text-white">Lavalite</span> */}
             </div>
             {/* Navigation */}
-            <nav className="flex-1 flex space-x-8 justify-center-item">
+            <div className="container ">
+ <nav className="flex-1 flex space-x-8 justify-center-item">
                 {/* items-center  */}
                 {/* <div className="flex-1" ></div> */}
-                
+
                 {/* <div className="flex-2"> */}
-                    <Link href="/collection"
-                        className="paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition">
-                        <FaHeart />
-                        <span className="marginLeft_10">Collection</span>
-                    </Link>
-                    <Link href="/saved-searches"
-                        className="paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition">
-                        <FaBookmark />
-                        <span className="marginLeft_10">Saved Searches</span>
-                    </Link>
-                    <Link href="/my-reports"
-                        className="paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition">
-                        <FaSearch />
-                        <span className="marginLeft_10">My Reports</span>
-                    </Link>
-                    <span className="paddingLeft2 flex items-center gap-3 text-[#EDB75E]">
-                        <FaUser />
-                     <span className="marginLeft_10"> Hi {username}!</span>  
-                    </span>
-                    <button
-                        onClick={handleLogout}
-                        className="marginRight2 paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition ml-4">
-                        <FaTimesCircle />
-                       <span className="marginLeft_10">Logout</span> 
-                    </button>
+                <Link href="/collection"
+                    className="paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition">
+                    <FaHeart />
+                    <span className="marginLeft_10">Collection</span>
+                </Link>
+                <Link href="/saved-searches"
+                    className="paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition">
+                    <FaBookmark />
+                    <span className="marginLeft_10">Saved Searches</span>
+                </Link>
+                <Link href="/market-report"
+                    className="paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition">
+                    <FaSearch />
+                    <span className="marginLeft_10">Market Reports</span>
+                </Link>
+                <span className="paddingLeft2 flex items-center gap-3 text-[#EDB75E]">
+                    <FaUser />
+                    <span className="marginLeft_10"> Hi {username}!</span>
+                </span>
+                <button
+                    onClick={handleLogout}
+                    className="marginRight2 paddingLeft2 flex items-center gap-3 text-[#EDB75E] hover:text-white transition ml-4">
+                    <FaTimesCircle />
+                    <span className="marginLeft_10">Logout</span>
+                </button>
                 {/* </div> */}
 
             </nav>
+            </div>
+           
             <div></div>
         </div>
     )

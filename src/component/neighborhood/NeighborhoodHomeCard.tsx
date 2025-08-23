@@ -13,8 +13,10 @@ export const NeighborhoodHomeCard = ({ item }: NeighborhoodHomeCardProps) => {
         <div className="neighborhood-card"
             onClick={() => handleClick(item.name)}>
             <Image
-                src="/images/neighborhood-1.png"
-                alt="Orange"
+                // src="/images/neighborhood-1.png"
+                src={item.images ? item.images : "/images/neighborhood-1.png"}
+
+                alt="neighborhood"
                 width={300}
                 height={200}
             />
