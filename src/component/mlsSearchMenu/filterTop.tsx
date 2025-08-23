@@ -13,7 +13,7 @@ import { VscSettings } from "react-icons/vsc";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { AiOutlineDollarCircle } from "react-icons/ai";
-const FilterTop = ({ handleSearch, searchFilters }: FilterTopProps) => {
+const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopProps) => {
     const [openAllFilter, setOpenAllFilter] = useState(false);
     const [isPriceDropdownOpen, setIsPriceDropdownOpen] = useState(false);
     const [isPropertyTypeDropdownOpen, setIsPropertyTypeDropdownOpen] = useState(false);
@@ -330,7 +330,11 @@ const FilterTop = ({ handleSearch, searchFilters }: FilterTopProps) => {
                 </div>
                 <div className="relative flex flex-none min-w-[120px]">
                     {/* Save Search Button */}
-                    <button className="mls-searchmenu-yellow text-black font-bold px-4 py-2 rounded hover:bg-[#d9a04f] transition">
+                    <button
+                     className="mls-searchmenu-yellow text-black font-bold px-4 py-2 rounded 
+                     hover:bg-[#d9a04f] transition"
+                     onClick={handleSaveSearch}
+                     >
                         Save Search
                     </button>
                 </div>

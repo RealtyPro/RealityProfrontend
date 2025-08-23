@@ -8,11 +8,22 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig: import('next').NextConfig = {
+  reactStrictMode: true,
   output: 'standalone',
   images: {
     // allow external images from Google Cloud Storage and demo site images
     domains: ['storage.googleapis.com', 'demorealestate.webnapps.net'],
   },
+  async rewrites()
+   {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://demorealestate.webnapps.net/api/:path*', // Proxy to Backend
+      },
+    ];
+    
+  }
 };
 
 module.exports = nextConfig;

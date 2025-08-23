@@ -1,10 +1,13 @@
 import axiosInstance from "../Api";
 
 export const fetchPropertyList = async (data: { pageLimit?: number; search?: string }) => {
-    console.log('fetchPropertyList called with data:', data);
     const pageLimit = data?.pageLimit || 1;
     const search = data?.search || '';
     const response = await axiosInstance.get(`/v1/properties?search[title]=${search}&page=${pageLimit}`);
+    return response.data;
+}
+export const fetchFeaturedPropertyList = async () => {
+    const response = await axiosInstance.get(`/v1/properties/featured-properties?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}`);
     return response.data;
 }
 export const fetchMlsSearchPropertyList = async (
@@ -36,8 +39,11 @@ export const fetchMlsPropertyById = async (id: string) => {
     return response.data;
 };
 export const saveSearches = async (data:object) => {
-   
-    const response = await axiosInstance.post(`/v1/properties/saved-search?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID},data`);
+    const response = await axiosInstance.post(`/v1/property/saved-search?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}`,data);
+    return response.data;
+}
+export const fetchSavedSearches = async () => {
+    const response = await axiosInstance.get(`/v1/properties/saved-search?ListAgentMlsId=${process.env.NEXT_PUBLIC_REALTY_PRO_AGENT_ID}`);
     return response.data;
 }
 // type PropertySearchParams = {

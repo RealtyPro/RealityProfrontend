@@ -55,6 +55,7 @@ export const PropertyCard = ({ item, handleModal,hideWishlist }: PropertyCardPro
                 <Image
                     src={item.cover_image ? item.cover_image[0] : item.cover_photo[0]}
                     alt="Property"
+                    
                     width={400}
                     height={250}
                 />

@@ -46,6 +46,7 @@ export type SearchFilters = {
 export interface FilterTopProps {
     handleSearch: (value: string, key: keyof SearchFilters) => void;
     searchFilters: SearchFilters;
+    handleSaveSearch?: () => void; // Optional prop for save search functionality
 }
 export interface MLSAdvanceSearchProps {
     open: boolean;

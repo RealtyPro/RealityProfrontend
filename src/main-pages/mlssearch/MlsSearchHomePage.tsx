@@ -15,6 +15,7 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { postUserPropertyWishlist, removeWishlistItem } from "@/services/profile/ProfileServices"
 import { MlsMapModalCard } from "@/component/mlsSearchMenu/MlsMapModalCard"
+import { saveSearches } from "@/services/properties/PropertyServices"
 type Property = {
     id: string;
     // add other fields as needed, e.g. title: string;
@@ -89,6 +90,17 @@ const MlsSerchHomePage = () => {
         // clear on unmount (navigation inside the SPA)
         return () => clearTempFilters();
     }, []);
+    const postSaveSeachMutation = useMutation({
+        mutationFn: (savedData: any) => saveSearches(savedData),
+        onSuccess: (data) => {
+
+            console.log("Property added to wishlist successfully:", data);
+        },
+          onError: (error) => {
+            console.error("Error  while deletion:", error);
+
+        }
+    });
     const postWishlistMutation = useMutation({
         mutationFn: (property: any) => postUserPropertyWishlist(property),
         onSuccess: (data) => {
@@ -135,9 +147,9 @@ const MlsSerchHomePage = () => {
 
         }
     }, [propertyListDatas, isLoading, isError]);
-        useEffect(()=>{
-            console.log("Hovered Property:", hoveredProperty);
-        },[hoveredProperty])
+    useEffect(() => {
+        console.log("Hovered Property:", hoveredProperty);
+    }, [hoveredProperty])
 
     useEffect(() => {
 
@@ -226,7 +238,15 @@ const MlsSerchHomePage = () => {
         setIsLoginModalOpen(false);
         setIsRegistrationModalOpen(true);
     };
+    const handleSaveSearch = () => {
+        let data={
+            user_id: sessionStorage.getItem("customer_id"),
+            filters: searchFilters,
+            name:"Luxury Villa"
+        }
+        postSaveSeachMutation.mutate(data);
 
+    }
     return (
         <>
             <ToastContainer
@@ -259,6 +279,7 @@ const MlsSerchHomePage = () => {
                 <FilterTop
                     handleSearch={handleSearch}
                     searchFilters={searchFilters}
+                    handleSaveSearch={handleSaveSearch}
                 />
 
             </section>
