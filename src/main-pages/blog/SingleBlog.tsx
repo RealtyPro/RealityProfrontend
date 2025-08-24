@@ -43,7 +43,6 @@ const SingleBlog = () => {
                                 <span className="logo-text">Lavalite</span>
                             </div>
                         </div>
-
                         <nav className="nav-menu">
                             <ul>
                                 <li><a href="/home" className="nav-link ">Home</a></li>
