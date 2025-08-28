@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MLSAdvanceSearch from "./MLSAdvanceSearch";
 import MLSToolbar from "./MLSToolbar";
 import { FilterTopProps } from "@/types/Property";
@@ -11,14 +11,44 @@ import { TbBuildingEstate } from "react-icons/tb";
 import { PiBathtub } from "react-icons/pi";
 import { VscSettings } from "react-icons/vsc";
 import { TbRulerMeasure2 } from "react-icons/tb";
-import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiDollar } from "react-icons/bi";
-const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopProps) => {
+import LocationSearchInput from "./LocationSearch";
+import { useJsApiLoader } from "@react-google-maps/api";
+import { HiOutlineLocationMarker } from "react-icons/hi";
+
+const libraries: ("places")[] = ["places"];
+
+interface Props {
+    handleSearch: (value: string, key: "keyword") => void; // Adjust if needed
+}
+const FilterTop = ({ handleSearch, searchFilters, handleSaveSearch }: FilterTopProps) => {
     const [openAllFilter, setOpenAllFilter] = useState(false);
     const [isPriceDropdownOpen, setIsPriceDropdownOpen] = useState(false);
     const [isPropertyTypeDropdownOpen, setIsPropertyTypeDropdownOpen] = useState(false);
     const [isBedDropdownOpen, setIsBedDropdownOpen] = useState(false);
     const [isBathDropdownOpen, setIsBathDropdownOpen] = useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    // const { isLoaded } = useJsApiLoader({
+    //     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY as string,
+    //     libraries,
+    // });
+
+ useEffect(() => {
+    if (!window.google || !inputRef.current) return;
+
+    const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
+      types: ["geocode"],
+      componentRestrictions: { country: "us" },
+    });
+
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (!place.geometry || !place.geometry.location) return;
+
+      handleSearch(place.formatted_address ?? "", "keyword");
+    });
+  }, [handleSearch]);
     const handlePriceDropdownToggle = () => {
         setIsPriceDropdownOpen(!isPriceDropdownOpen);
         setIsBathDropdownOpen(false);
@@ -50,28 +80,29 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
             <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4  rounded
              shadow container mx-auto">
                 {/* Search Box */}
-                <div className="relative flex flex-1 min-w-[200px]">
-                    <span className="absolute inset-y-0 left-0 flex items-center pr-2 pl-3 text-gray-400">
-                        <HiOutlineLocationMarker size={"15px"} color={'#edb75e'}/>   {/* Or any other icon */}
-                    </span>
+                <div className="relative flex flex-1 min-w-[380px]">
+                    <span className="absolute inset-y-0 left-0 flex items-center pr-2 pl-3  text-gray-400">
+                        <HiOutlineLocationMarker size={"15px"}  className="mr6" color={'#edb75e'} /></span>
                     <input
+                        ref={inputRef}
                         onChange={(e) => handleSearch(e.target.value, 'keyword')}
                         type="text"
-                        placeholder="Search by city, country, ZIP "
-                        className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] focus:ring-opacity-20 w-full"
+                        placeholder="Search by city"
+                        className="border pdl24 border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] focus:ring-opacity-20 w-full"
                     />
                 </div>
+                {/* <LocationSearchInput handleSearch={handleSearch} searchKey={'keyword'} /> */}
 
                 {/* Property Type Dropdown */}
-                <div className="relative flex flex-1 min-w-[160px]">
+                {/* <div className="relative flex flex-1 min-w-[160px]">
                     <button
 
                         className="no-p-r border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handlePropertyTypeDropdownToggle}
                     >
                         <span className="float-left"><TbBuildingEstate
-                         className="mt-4  mr-4"
-                         size={"15px"} color={'#edb75e'} /></span>
+                            className="mt-4  mr-4"
+                            size={"15px"} color={'#edb75e'} /></span>
 
                         Property Type
                         <span className="float-right"><RiArrowDownSLine size={"20px"} /></span>
@@ -82,7 +113,6 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                             <div className="space-y-3">
                                 <div className="flex minwidth300 gap-3 bg-[#000000] text-white p-2 rounded">
                                     <div className="flex-1">
-                                        {/* <label className="block text-sm font-medium text-white mb-1">Property Type</label> */}
                                         <select
                                             className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] bg-black text-white"
                                             onChange={(e) => handleSearch(e.target.value, 'property_type')}
@@ -104,26 +134,19 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                             </div>
                         </div>
                     )}
-                </div>
+                </div> */}
 
                 {/* Price Dropdown */}
-                <div className="relative flex flex-1 min-w-[160px]">
-                    
+                <div className="relative flex flex-1 min-w-[90px]">
+
                     <button
                         className="border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handlePriceDropdownToggle}
                     >
-                         <span className="float-left"><BiDollar
-                         className="mt-4  mr-4"
-                         size={"15px"} color={'#edb75e'} /></span>
+                        <span className="float-left"><BiDollar
+                            className="mt-4  mr-4"
+                            size={"15px"} color={'#edb75e'} /></span>
                         {
-                            // searchFilters.price_min && searchFilters.price_max
-                            //     ? `$${Number(searchFilters.price_min).toLocaleString()} - $${Number(searchFilters.price_max).toLocaleString()}`
-                            //     : searchFilters.price_min
-                            //         ? `From $${Number(searchFilters.price_min).toLocaleString()}`
-                            //         : searchFilters.price_max
-                            //             ? `Up to $${Number(searchFilters.price_max).toLocaleString()}`
-                            //             :
                             'Price'
                         }
                         <span className="float-right"><RiArrowDownSLine size={"20px"} /></span>
@@ -200,13 +223,13 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 </div>
 
                 {/* Bed Dropdown */}
-                <div className="relative flex flex-1 min-w-[120px]">
+                <div className="relative flex flex-1 min-w-[90px]">
                     <button
                         className="border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handleBedDropdownToggle}
                     ><span className="float-left"><IoBedOutline
-                         className="mt-4  mr-4"
-                         size={"15px"} color={'#edb75e'} /></span>
+                        className="mt-4  mr-4"
+                        size={"15px"} color={'#edb75e'} /></span>
                         Bed
                         <span className="float-right"><RiArrowDownSLine size={"20px"} /></span>
                     </button>
@@ -260,14 +283,14 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 </div>
 
                 {/* Bath Dropdown */}
-                <div className="relative flex flex-1 min-w-[120px]">
+                <div className="relative flex flex-1 min-w-[90px]">
                     <button
                         className="border search-padding border-gray-300 rounded px-3 py-2 w-full text-left focus:outline-none focus:ring-2 focus:ring-[#151515]"
                         onClick={handleBathDropdownToggle}
                     >
                         <span className="float-left"><PiBathtub
-                         className="mt-4  mr-4"
-                         size={"15px"} color={'#edb75e'} /></span>
+                            className="mt-4  mr-4"
+                            size={"15px"} color={'#edb75e'} /></span>
                         Bath
                         <span className="float-right"><RiArrowDownSLine size={"20px"} /></span>
                     </button>
@@ -323,19 +346,19 @@ const FilterTop = ({ handleSearch, searchFilters,handleSaveSearch }: FilterTopPr
                 <div className="relative flex flex-none min-w-[90px]">
                     {/* Advance Filter Button */}
                     <button onClick={() => setOpenAllFilter(true)} className=" hovertext text-white px-4 py-2 rounded hover:bg-gray-200 transition">
-                       <span className="float-left"><VscSettings
-                         className="mt-4  mr-4"
-                         size={"15px"} color={'#edb75e'} /></span> 
+                        <span className="float-left"><VscSettings
+                            className="mt-4  mr-4"
+                            size={"15px"} color={'#edb75e'} /></span>
                         All Filter
                     </button>
                 </div>
                 <div className="relative flex flex-none min-w-[120px]">
                     {/* Save Search Button */}
                     <button
-                     className="mls-searchmenu-yellow text-black font-bold px-4 py-2 rounded 
+                        className="mls-searchmenu-yellow text-black font-bold px-4 py-2 rounded 
                      hover:bg-[#d9a04f] transition"
-                     onClick={handleSaveSearch}
-                     >
+                        onClick={handleSaveSearch}
+                    >
                         Save Search
                     </button>
                 </div>

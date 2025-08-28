@@ -40,13 +40,12 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
         }
     }, [neighborListDatas, isLoading, error]);
     return (
-        <div className="w-full p-4 bg-white shadow rounded mls-searchmenu mrgn30 overflow-x-auto">
+        <div className="w-full p-4 bg-white shadow rounded mls-searchmenu mrgn54 overflow-x-auto">
             <div className="flex flex-wrap mls-searchmenu items-center gap-4 bg-white p-4 rounded 
             container shadow w-full">
                 {/* Search Box */}
 
-                <div className="relative flex-1">
-                    {/* Property Type Dropdown */}
+                {/* <div className="relative flex-1">
                     <select
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] text-white "
                         style={{ backgroundColor: '#000000', color: '#ffffff' }}
@@ -59,11 +58,8 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
                         <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="condo">Condo</option>
                         <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="townhouse">Townhouse</option>
                     </select>
-                    {/* Custom Arrow */}
-                    {/* <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">▼</span> */}
-                </div>
-                <div className="relative flex-1">
-                    {/* Beds Dropdown */}
+                </div> */}
+                {/* <div className="relative flex-1">
                     <select
                         className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515] text-white"
                         style={{ backgroundColor: '#000000', color: '#ffffff' }}
@@ -76,11 +72,9 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
                         ))}
 
                     </select>
-                    {/* Custom Arrow */}
-                    {/* <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">▼</span> */}
-                </div>
+                </div> */}
                 {/* <div className="relative flex-2">  </div> */}
-                <div className="relative flex-1">
+                {/* <div className="relative flex-1">
                     <div className="flex items-center  w-48">
                         <span className="text-sm mr-5">Show Map</span>
 
@@ -96,20 +90,16 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
                              peer-checked:translate-x-5"></div>
                         </label>
                     </div>
-                </div>
+                </div> */}
 
 
                 <div className="relative flex-1">
                     {/* Beds Dropdown */}
                     <select
-                        className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]  text-white "
+                        className="w-full border  max-w-[180px] border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#151515]  text-white "
                         style={{ backgroundColor: '#000000', color: '#ffffff' }} >
                         <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="">Sort by Newest</option>
-                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="1">1+</option>
-                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="2">2+</option>
-                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="3">3+</option>
-                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="4">4+</option>
-                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="5">5+</option>
+                        <option style={{ backgroundColor: '#000000', color: '#ffffff' }} value="1">Sort by Oldest</option>
                     </select>
                     {/* Custom Arrow */}
                     {/* <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white">▼</span> */}
@@ -118,7 +108,7 @@ export const MlsListingOptions = ({ handleOpenMapPropertyGrid, handleOpenMapGrid
 
 
                 <div className="relative flex-1 flex flex-direction-row justify-between 
-                items-center mrgn10">
+                items-center mrgn75 max-w-[180px] alr">
                     {/* Save Search Button */}
 
                     <button className="mls-listing-option-list mls-icon-pdding"

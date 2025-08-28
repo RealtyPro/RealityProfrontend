@@ -1,7 +1,7 @@
 import { PropertyCard } from "../properties/PropertyCard"
 import 'leaflet/dist/leaflet.css'
-import LeafletMap from "./MlsMap"
-import GoogleMapComponent from "./MlsMap"
+// import LeafletMap from "./MlsMap"
+import {GoogleMapComponent} from "./MlsMap"
 import { useState } from "react";
 import { MlsMapModalCard } from "./MlsMapModalCard";
 import { MlsPropertyCard } from "./MlsPropertyCard"

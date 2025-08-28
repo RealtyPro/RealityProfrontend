@@ -8,7 +8,7 @@ const MLSAdvanceSearch = ({ open, onClose, onApply, handleSearch, searchFilters 
     const [checked, setChecked] = useState(false);
 
     const handleApply = () => {
-        alert(`Filter applied: ${checked}`);
+        // alert(`Filter applied: ${checked}`);
         onApply(checked);
         onClose();
     };

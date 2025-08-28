@@ -9,13 +9,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { MlsPropertyCard } from "@/component/mlsSearchMenu/MlsPropertyCard"
 import RegistrationModal from "../auth/RegistrationModal"
 import LoginModal from "../auth/LoginModal"
-import GoogleMapComponent from "@/component/mlsSearchMenu/MlsMap"
+import { GoogleMapComponent } from "@/component/mlsSearchMenu/MlsMap"
 import { useState as useHoverState } from "react"; // alias to avoid clash but easier
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { postUserPropertyWishlist, removeWishlistItem } from "@/services/profile/ProfileServices"
 import { MlsMapModalCard } from "@/component/mlsSearchMenu/MlsMapModalCard"
 import { saveSearches } from "@/services/properties/PropertyServices"
+import GoogleMapsProvider from "@/provider/GoogleMapProvider"
 type Property = {
     id: string;
     // add other fields as needed, e.g. title: string;
@@ -28,7 +29,7 @@ const MlsSerchHomePage = () => {
     const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [showMap,setShowMap]=useState(true);
+    const [showMap, setShowMap] = useState(true);
     const [searchFilters, setSearchFilters] = useState(() => {
         // read once during initial render (browser-side only)
         const type = typeof window !== "undefined" ? sessionStorage.getItem("prop_type") ?? "" : "";
@@ -97,7 +98,7 @@ const MlsSerchHomePage = () => {
 
             console.log("Property added to wishlist successfully:", data);
         },
-          onError: (error) => {
+        onError: (error) => {
             console.error("Error  while deletion:", error);
 
         }
@@ -159,17 +160,17 @@ const MlsSerchHomePage = () => {
 
     }, [searchFilters, currentPage, queryClient]);
     useEffect(() => {
-        if(showMap){
+        if (showMap) {
             setOpenMapPropertyGrid(true);
             setOpenMapGrid(false);
             setOpenPropertyGrid(false);
         }
-        else{
+        else {
             setOpenPropertyGrid(true);
             setOpenMapGrid(false);
             setOpenMapPropertyGrid(false);
         }
-    },[showMap]);
+    }, [showMap]);
     const removeWishlistMutation = useMutation({
         mutationFn: (id: string) => removeWishlistItem(id),
 
@@ -252,10 +253,10 @@ const MlsSerchHomePage = () => {
         setIsRegistrationModalOpen(true);
     };
     const handleSaveSearch = () => {
-        let data={
+        let data = {
             user_id: sessionStorage.getItem("customer_id"),
             filters: searchFilters,
-            name:"Luxury Villa"
+            name: "Luxury Villa"
         }
         postSaveSeachMutation.mutate(data);
 
@@ -265,7 +266,7 @@ const MlsSerchHomePage = () => {
 
     }
     return (
-        <>
+        <GoogleMapsProvider>
             <ToastContainer
                 position="top-right"
                 autoClose={20000}
@@ -324,6 +325,7 @@ const MlsSerchHomePage = () => {
                         handleModal={handleModal}
                     /> : <></>
                 }
+
                 {openPropertyGrid ?
 
 
@@ -409,9 +411,8 @@ const MlsSerchHomePage = () => {
                             <div>No properties found.</div>
                         ) : <></>}
 
-
             </div>
-        </>
+        </GoogleMapsProvider>
     )
 }
 export default MlsSerchHomePage;
