@@ -1,4 +1,4 @@
-import GoogleMapComponent from "./MlsMap"
+import { GoogleMapComponent } from "./MlsMap"
 
 export const MlsMapPage = () => {
     return (
