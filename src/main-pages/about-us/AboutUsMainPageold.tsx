@@ -12,8 +12,8 @@ export default function AboutUsMainPageold() {
                                 <span className="menu-div yellow-text">About Us</span>
 
                             </div>
-                            <span className="heading-text">Presenting Lavalite Story</span>
-                            <p className="heading-sub-text">Get to know Lavalite leading luxury real estate agents.</p>
+                            <span className="heading-text">Presenting AshuHomes Story</span>
+                            <p className="heading-sub-text">Get to know AshuHomes leading luxury real estate agents.</p>
                         </div>
                     </div>
                 </div>
@@ -105,7 +105,7 @@ export default function AboutUsMainPageold() {
                         <p className="sub">We are always looking to partner with the brand that elevate the experience for our member</p>
                         <div className="info-block">
                             <div className="info-title">Partner Email:</div>
-                            <div className="info-value">Info@lavalite.com</div>
+                            <div className="info-value">Info@AshuHomes.com</div>
                         </div>
                         <div className="info-block">
                             <div className="info-title">Membership Email:</div>

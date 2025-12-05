@@ -19,7 +19,6 @@ export const Sidebar = ({activeSidebar}:sidebarProps) => {
     return (
         <aside className="w-64 flex flex-col py-8 px-4 bg-[#171717] border-r border-[#222]">
             <div className="mb-10 flex items-center gap-2 px-2">
-                {/* <span className="text-2xl font-bold tracking-wide">Lavalite</span> */}
             </div>
             <nav className="flex flex-col gap-2 paddingLeft-10 sidebar">
                 {sidebarLinks.map(link => (

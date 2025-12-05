@@ -19,7 +19,7 @@ const nextConfig: import('next').NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://demorealestate.webnapps.net/api/:path*', // Proxy to Backend
+        destination: 'https://demorealestate2.webnapps.net/api/:path*', // Proxy to Backend
       },
     ];
     

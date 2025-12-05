@@ -39,7 +39,6 @@ export const DashboardHeader = ({ activeHeader }: headerProps) => {
     h-10 z-50 bg-black flex items-center border-b border-[#232323] px-8  ">
             {/* Logo */}
             <div className="flex items-center mr-8 ">
-                {/* <span className="text-2xl font-bold font-serif text-white">Lavalite</span> */}
             </div>
             {/* Navigation */}
             <div className="container ">

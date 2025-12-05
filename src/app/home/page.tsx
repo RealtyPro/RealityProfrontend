@@ -70,18 +70,18 @@ export default function HomePage() {
                     <div className="about-content abouthome">
 
                         <div className="about-image">
-                            <img src="/images/lincy-home-img.jpeg" alt="Trusted Global Advisor" />
+                            <img src="/images/ashenafi.jpeg" alt="Trusted Global Advisor" />
                             <div className="advisor-card">
                                 <div className="advisor-info">
-                                    <span className="third-header-text">Lincy Mathew</span>
+                                    <span className="third-header-text">Ashenafi A Mendera</span>
                                     <p className="advisor-title">Trusted Agent</p>
-                                    <p className="advisor-desc">Lincy Mathew is a dependable and 
+                                    <p className="advisor-desc">Ashenafi A Mendera is a dependable and 
                                         accomplished real estate professional serving the greater
                                          Seattle area. She has called Redmond home for over 20 years,
                                           giving her a deep understanding of the local market and 
                                           community.
 
-                                        Lincy’s clients are her top priority, and she is committed
+                                        Ashenafi A Mendera's clients are her top priority, and she is committed
                                          to walking with them every step of the way—from the initial 
                                          consultation to closing. Her approachable personality, positive
                                           outlook, and cheerful demeanor make connecting with her

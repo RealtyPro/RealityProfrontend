@@ -199,7 +199,7 @@ export default function ContactUsMainPage() {
                                 className="full"
                             />
 
-                            <p className="contact-info w-full full mt-4">By submitting this form I agree to be contacted by Lavalite. This includes receiving automated calls, texts and emails about real estate, finance and related topics.</p>
+                            <p className="contact-info w-full full mt-4">By submitting this form I agree to be contacted by AshuHomes. This includes receiving automated calls, texts and emails about real estate, finance and related topics.</p>
 
                             <div className="contact-submit flex justify-end mt-4 full">
                                 <button
@@ -216,8 +216,8 @@ export default function ContactUsMainPage() {
                         <Image src="/images/contactusimg.png" alt="location" fill style={{ objectFit: 'cover' }} />
                         <div className="contact-overlay"></div>
                         <div className="contact-details paddingLeft-10">
-                            <h3 className="contactus-heading mb5">Lavalite LLC</h3>
-                            <p className="mt15 contact-emai ">lavalite@gmail.com</p>
+                            <h3 className="contactus-heading mb5">AshuHomes LLC</h3>
+                            <p className="mt15 contact-emai ">AshuHomes@gmail.com</p>
                             <p className="marginTop contact-emai">+0123 456 7890</p>
                             <p className="mt15 contact-emai ">517 Washington Ave.<br />Manchester, Kentucky 39495</p>
                             <div className="social-links left-justify">

@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       {/* Sidebar */}
       <aside className="w-64 flex flex-col py-8 px-4 bg-[#181818] border-r border-[#222]">
         <div className="mb-10 flex items-center gap-2 px-2">
-          <span className="text-2xl font-bold tracking-wide">Lavalite</span>
+          <span className="text-2xl font-bold tracking-wide">AshuHomes</span>
         </div>
         <nav className="flex flex-col gap-2">
           {sidebarLinks.map(link => (
